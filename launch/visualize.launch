@@ -1,0 +1,32 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Arguments for ROS parameters -->
+  <arg name="dataset" default="package://motion_bench_maker/problems/shelf_fetch" />
+  <arg name="geometric" default="true" />
+  <arg name="sensed" default="false" />
+  <arg name="solve" default="false" />
+  <arg name="rviz" default="visualize" />
+  <arg name="pcd" default="false" />
+
+  <!-- Start the create dataset node -->
+  <node  name="visualize" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="visualize" output="screen" required = "true" > 
+    
+    <param name="dataset" value="$(arg dataset)" />
+    <param name="geometric" value="$(arg geometric)" />
+    <param name="sensed" value="$(arg sensed)" />
+    <param name="solve" value="$(arg solve)" />
+    <param name="pcd" value="$(arg pcd)" />
+
+  </node>
+
+  <!-- Start rviz since it is always required  -->
+  <include file="$(find motion_bench_maker)/launch/rviz.launch" >
+    <arg name="config" value="$(arg rviz)" />
+  </include>
+  
+</launch>

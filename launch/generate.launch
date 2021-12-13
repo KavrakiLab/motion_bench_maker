@@ -1,0 +1,43 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Arguments for ROS parameters -->
+  <arg name="config" default="" />
+  <arg name="dataset" default="" />
+  <arg name="planner_name" default="RRTConnectkConfigDefault"/>
+  <arg name="visualize" default="false" />
+  <arg name="sensed" default="false" />
+  <arg name="pointcloud" default="false" />
+  <arg name="visualize_sensed" default="false" />
+  <arg name="tuning_mode" default="false" />
+  <arg name="start" default="1" />
+  <arg name="end" default="-1" />
+
+
+  <!-- Run the generate script node -->
+  <node  name="$(anon generate)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="generate" output="screen" required = "true" > 
+    
+    <param name="config" value="$(arg config)" />
+    <param name="dataset" value="$(arg dataset)" />
+    <param name="planner_name" value="$(arg planner_name)" />
+    <param name="visualize" value="$(arg visualize)" />
+    <param name="visualize_sensed" value="$(arg visualize_sensed)" />
+    <param name="sensed" value="$(arg sensed)" />
+    <param name="pointcloud" value="$(arg pointcloud)" />
+    <param name="tuning_mode" value="$(arg tuning_mode)" />
+    <param name="start" value="$(arg start)" />
+    <param name="end" value="$(arg end)" />
+    
+  </node>
+
+  <group if="$(eval arg('visualize') or arg('tuning_mode'))">
+     <include file="$(find motion_bench_maker)/launch/rviz.launch" >
+       <arg name="config" value="visualize" />
+    </include>
+  </group>
+    
+</launch>

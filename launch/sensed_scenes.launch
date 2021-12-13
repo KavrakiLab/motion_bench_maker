@@ -1,0 +1,26 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Arguments for ROS parameters -->
+  <arg name="dataset" default="" />
+  <arg name="visualize" default="false" />
+
+  <!-- Start the create dataset node -->
+  <node name="$(anon sensed_scenes)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="sensed_scenes" output="screen" required = "true" > 
+    
+    <param name="dataset" value="$(arg dataset)" />
+    <param name="visualize" value="$(arg visualize)" />
+    
+  </node>
+
+  <group if="$(arg visualize)">
+     <include file="$(find motion_bench_maker)/launch/rviz.launch" >
+       <arg name="config" value="visualize" />
+    </include>
+  </group>
+    
+</launch>

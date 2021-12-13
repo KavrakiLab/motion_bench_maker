@@ -1,0 +1,7 @@
+<launch>
+
+    <arg name="config" default="visualize" />
+    <node  name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find motion_bench_maker)/configs/rviz/$(arg config).rviz" />
+
+</launch>
+

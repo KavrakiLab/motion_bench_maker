@@ -1,0 +1,14 @@
+robot_description: package://motion_bench_maker/configs/robots/baxter.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_baxter.yaml
+scene: package://motion_bench_maker/configs/scenes/cage/scene_cage.yaml
+queries: package://motion_bench_maker/configs/scenes/cage/queries_cage.yaml
+variation: package://motion_bench_maker/configs/scenes/cage/variation_cage.yaml
+sensors: package://motion_bench_maker/configs/scenes/cage/sensors_cage.yaml
+planning_group: right_arm
+samples: 100
+base_offset:
+    position    : [0.48, 0, -0.48]
+    orientation : [0, 0, 0 , 1]
+ee_offset:
+    position    : [-0.175, -0.01, -0.09]
+    orientation:  [0, -0.216, 0, 0.976]

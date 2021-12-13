@@ -1,0 +1,9 @@
+urdf: package://robowflex_resources/fetch/robots/fetch.urdf
+srdf: package://robowflex_resources/fetch/config/fetch.srdf
+kinematics: package://robowflex_resources/fetch/config/kinematics.yaml
+limits: package://robowflex_resources/fetch/config/joint_limits.yaml
+#default robot state with hand open at tuck position
+robot_state:
+  joint_state:
+    name: [l_wheel_joint, r_wheel_joint, torso_lift_joint, bellows_joint, head_pan_joint, head_tilt_joint, shoulder_pan_joint, shoulder_lift_joint, upperarm_roll_joint, elbow_flex_joint, forearm_roll_joint, wrist_flex_joint, wrist_roll_joint, l_gripper_finger_joint, r_gripper_finger_joint]
+    position: [0.0, 0.0, 0.1, 0.05, 0, 0, 1.32, 1.4, -0.2, 1.72, 0, 1.66, 0.0, 0.05, 0.05]

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="metal">
+<link name="body">
+  <collision>
+    <origin rpy="0 0 1.57" xyz="0.75 0 0"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/metal.stl"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin rpy="0 0 1.57" xyz="0.75 0 0"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/metal.stl"/>
+    </geometry>
+  </visual>
+  </link>
+</robot>

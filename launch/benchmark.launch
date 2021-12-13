@@ -1,0 +1,39 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Arguments for ROS parameters -->
+  <arg name="dataset" default="package://motion_bench_maker/problems/shelf_fetch/" />
+  <arg name="results" default="package://motion_bench_maker/results/shelf_fetch/" />
+  <arg name="exp_name" default="results" />
+  <arg name="train" default="False" />
+  <arg name="time" default="30" />
+
+  <arg name="start" default="1" />
+  <arg name="end" default="-1" />
+  <arg name="runs" default="1" />
+
+  <arg name="sensed" default="false" />
+  <arg name="planners" default="RRTConnectDefault, BiESTDefault "/>
+
+
+  <!-- Start the create dataset node -->
+  <node  name="$(anon benchmark)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="benchmark" output="screen" required = "true" > 
+    
+    <param name="dataset" value="$(arg dataset)" />
+    <param name="exp_name" value="$(arg exp_name)" />
+    <param name="sensed" value="$(arg sensed)" />
+    <param name="results" value="$(arg results)" />
+    <param name="start" value="$(arg start)" />
+    <param name="end" value="$(arg end)" />
+    <param name="runs" value="$(arg runs)" />
+    <param name="time" value="$(arg time)" />
+    <param name="train" value="$(arg train)" />
+    <rosparam param="planners" subst_value="True">[$(arg planners)]</rosparam>
+    
+  </node>
+
+</launch>

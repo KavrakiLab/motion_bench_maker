@@ -1,0 +1,14 @@
+robot_description: package://motion_bench_maker/configs/robots/ur5.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_ur5.yaml
+scene: package://motion_bench_maker/configs/scenes/table_bars/table_bars.urdf
+queries: package://motion_bench_maker/configs/scenes/table_bars/single_arm_queries.yaml
+variation: package://motion_bench_maker/configs/scenes/table_bars/variation.yaml
+sensors: package://motion_bench_maker/configs/scenes/table_bars/sensors.yaml
+planning_group: manipulator
+samples: 100
+base_offset:
+    position    : [0.7, 0, 0.15]
+    orientation : [0, 0, 0, 1]
+ee_offset:
+    position    : [0.4, 0, -0.42]
+    orientation : [0, 0, 0, 1]

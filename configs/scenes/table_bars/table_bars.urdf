@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<robot name="table_bars">
+  <link name="root"></link>
+  <link name="shelves">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/shelves.stl" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/shelves.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_bars">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/right_bars.stl" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/right_bars.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_bars_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="shelves" />
+    <child link="right_bars" />
+    <axis xyz="0 1 0" />
+  <limit effort="0.32" lower="-0.35" upper="0" velocity="1.57" />
+  </joint>
+  <link name="left_bars">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/left_bars.stl" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://motion_bench_maker/configs/scenes/table_bars/meshes/left_bars.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_bars_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="shelves" />
+    <child link="left_bars" />
+    <axis xyz="0 1 0" />
+  <limit effort="0.32" lower="0" upper="0.35" velocity="1.57" />
+  </joint>
+  <joint name="shelves_connector" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="root" />
+    <child link="shelves" />
+  </joint>
+</robot>

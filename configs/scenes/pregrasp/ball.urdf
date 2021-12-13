@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="ball">
+<link name="body">
+  <collision>
+    <origin rpy="0 0 0" xyz="0 -0.675 0.1"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/ball.stl"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 -0.675 0.1"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/ball.stl"/>
+    </geometry>
+  </visual>
+  </link>
+</robot>

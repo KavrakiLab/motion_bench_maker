@@ -1,0 +1,18 @@
+start_queries:
+  - objects: ["cupboard"]
+    tag: "Front"
+    offset:
+      position: [0.6, 0.0, 1.5]
+      orientation: [0, 0.707, 0, 0.707]
+      position_tol: [0.1, 0.1, 0.1]
+      orientation_tol: [0.01, 0.01, 0.01]
+    attached: "False"
+goal_queries:
+  - objects: ["kitchen_counter"]
+    tag: "Front"
+    offset:
+      position: [0.6, -0.5, 0.6]
+      orientation: [0, 0.707, 0, 0.707]
+      position_tol: [0.1, 0.1, 0.1]
+      orientation_tol: [0.01, 0.01, 0.01]
+    attached: "False"

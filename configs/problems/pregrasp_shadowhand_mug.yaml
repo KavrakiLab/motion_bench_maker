@@ -1,0 +1,14 @@
+robot_description: package://motion_bench_maker/configs/robots/shadowhand.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning.yaml
+scene: package://motion_bench_maker/configs/scenes/pregrasp/mug.urdf
+queries: package://motion_bench_maker/configs/scenes/pregrasp/queries_mug.yaml
+variation: package://motion_bench_maker/configs/scenes/pregrasp/variation_mug.yaml
+sensors: package://motion_bench_maker/configs/scenes/pregrasp/sensors_mug.yaml
+planning_group: finger_ff
+samples: 20
+base_offset:
+    position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]
+ee_offset:
+    position    : [0, 0, 0]
+    orientation:  [0, 0, 0, 1]

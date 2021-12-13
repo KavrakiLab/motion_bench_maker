@@ -1,0 +1,41 @@
+world:
+  collision_objects:
+    - header:
+        frame_id: base_link
+      id: diswasher 
+      meshes:
+        - resource: "package://motion_bench_maker/configs/scenes/kitchen/objs/dishwasher.obj"
+      mesh_poses:
+        - position: [0.,0.,0.]
+          orientation: [0.707, 0, 0,  0.707]
+    - header:
+        frame_id: base_link
+      id: cupboard 
+      meshes:
+        - resource: "package://motion_bench_maker/configs/scenes/kitchen/objs/cupboard.obj"
+      mesh_poses:
+        - position: [0.,0.,0.]
+          orientation: [0.707, 0, 0,  0.707]
+    - header:
+        frame_id: base_link
+      id: Can1
+      primitives:
+        - type: cylinder
+          dimensions: [0.12, 0.03]
+      primitive_poses:
+        - position: [0.9, 0, 0.89]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Can2
+      primitives:
+        - type: cylinder
+          dimensions: [0.12, 0.03]
+      primitive_poses:
+        - position: [0.7, 0.2, 0.89]
+          orientation: [0, 0, 0, 1]
+fixed_frame_transforms: 
+  - child_frame_id: base_link 
+    transform:
+      translation: [0, 0, 0]
+      rotation: [0, 0, 0, 1]

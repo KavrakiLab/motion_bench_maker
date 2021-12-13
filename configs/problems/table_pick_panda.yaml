@@ -1,0 +1,14 @@
+robot_description: package://motion_bench_maker/configs/robots/panda.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_panda.yaml
+scene: package://motion_bench_maker/configs/scenes/table/scene_table.yaml
+queries: package://motion_bench_maker/configs/scenes/table/queries_pick_table.yaml
+variation: package://motion_bench_maker/configs/scenes/table/variation_table.yaml
+sensors: package://motion_bench_maker/configs/scenes/table/sensors_table.yaml
+planning_group: panda_arm
+samples: 100
+base_offset:
+    position    : [0.1, 0.1, -0.5]
+    orientation : [0, 0, 0 , 1]
+ee_offset:
+    position    : [0, 0, -0.08] 
+    orientation:  [-0.271, -0.653, -0.271, 0.653]

@@ -1,0 +1,9 @@
+goal_queries:
+  - objects: ["body"]
+    tag: "Front"
+    offset:
+      position: [0.1, 0, 0.05]
+      orientation: [ -0.4999998, -0.4999998, 0.4996018, 0.5003982 ]
+      position_tol: [0.01, 0.01, 0.01]
+      orientation_tol: [0.001,0.001,0.001]
+    attached: "False"

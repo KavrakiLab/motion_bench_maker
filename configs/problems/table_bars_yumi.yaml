@@ -1,0 +1,19 @@
+robot_description: package://motion_bench_maker/configs/robots/yumi.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_yumi.yaml
+scene: package://motion_bench_maker/configs/scenes/table_bars/table_bars.urdf
+queries: package://motion_bench_maker/configs/scenes/table_bars/queries.yaml
+variation: package://motion_bench_maker/configs/scenes/table_bars/variation.yaml
+sensors: package://motion_bench_maker/configs/scenes/table_bars/sensors.yaml
+planning_group: both_arms
+samples: 100
+base_offset:
+    position    : [0.1, 0, 0]
+    orientation : [0, 0, 0 , 1]
+ee_offset:
+  - position    :  [0, 0, -0.1]
+    orientation :  [0, -0.707, 0 ,0.707]
+    ee_tip:   "yumi_link_7_l"  
+  - position    :  [0, 0, -0.1]
+    orientation :  [0, -0.707, 0 ,0.707]
+    ee_tip :  "yumi_link_7_r"
+ee_dependency: False

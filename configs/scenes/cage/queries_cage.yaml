@@ -1,0 +1,9 @@
+goal_queries:
+  - objects: ["Cube1"]
+    tag: "Front"
+    offset:
+      position: [0, 0.0, 0.21]
+      orientation: [0, 0.707, 0, 0.707]
+      position_tol: [0.05, 0.05, 0.01]
+      orientation_tol: [0.01, 0.01, 0.01]
+    attached: "False"

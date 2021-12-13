@@ -1,0 +1,39 @@
+camera_config: package://motion_bench_maker/configs/sensors/camera.yaml
+look_objects:
+    - name: "shelves" 
+      position: [0, -0.25, 0.6]
+    - name: "shelves" 
+      position: [0, 0.25, 0.6]
+    - name: "shelves" 
+      position: [0, -0.25, 0.8]
+    - name: "shelves" 
+      position: [0, 0.25, 0.8]
+    - name: "shelves" 
+      position: [0, -0.25, 0.4]
+    - name: "shelves" 
+      position: [0, 0.25, 0.4]
+    - name: "shelves" 
+      position: [0, -0.5, 0.6]
+    - name: "shelves" 
+      position: [0, 0.5, 0.6]
+    - name: "shelves" 
+      position: [0, -0.5, 0.8]
+    - name: "shelves" 
+      position: [0, 0.5, 0.8]
+    - name: "shelves" 
+      position: [0, -0.5, 0.4]
+    - name: "shelves" 
+      position: [0, 0.5, 0.4]
+    - name: "shelves" 
+      position: [0, 0.0, 0.8]
+    - name: "shelves" 
+      position: [0, 0.0, 0.4]
+    - name: "shelves" 
+      position: [0, 0.0, 0.6]
+cam_points:
+    - [-0.3, 0.0, 0.6]
+    - [-0.3, 0.0, 0.7]
+    - [-0.3, 0.0, 0.5]
+
+
+resolution: 0.02

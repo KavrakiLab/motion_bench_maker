@@ -1,0 +1,21 @@
+camera_config: package://motion_bench_maker/configs/sensors/camera.yaml
+look_objects:
+    - name: "shelf_bottom" 
+      position: [0.0, 0.0, 0.2]
+    - name: "shelf_middle_bottom" 
+      position: [0.0, 0.0, 0.2]
+    - name: "shelf_middle" 
+      position: [0.0, 0.0, 0.2]
+    - name: "shelf_middle_top" 
+      position: [0.0, 0.0, 0.2]
+    - name: "shelf_top" 
+      position: [0.0, 0.0, 0.2]
+cam_points:
+    - [0.0, 0.0, 0.5]
+    - [0.0, 0.0, 0.7]
+    - [0.0, 0.0, 0.9]
+    - [0.0, 0.0, 1.1]
+    - [0.0, 0.0, 1.3]
+    - [0.0, 0.0, 1.5]
+
+resolution: 0.02

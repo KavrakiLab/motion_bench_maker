@@ -1,0 +1,6 @@
+focal_length_x: 550.0
+focal_length_y: 550.0
+width: 640
+height: 480
+z_near: 0.01 
+z_far: 10.0 

@@ -1,0 +1,8 @@
+- names: ["World"]
+  position: [0.1 , 0.1, 0.1]
+  orientation: [0, 0, 1.57]
+  type: "uniform"
+- names: ["Can1"]
+  position: [0 , 0.2, 0]
+  orientation: [0 , 0, 0]
+  type: "uniform"

@@ -1,0 +1,9 @@
+goal_queries:
+  - objects: ["Can1"]
+    tag: "FrontHard"
+    offset:
+      position: [0, 0.0, 0.25]
+      orientation: [0, 0.707, 0, 0.707]
+      position_tol: [0.01, 0.01, 0.01]
+      orientation_tol: [0.01, 0.01, 0.01]
+    attached: "False"

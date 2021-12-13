@@ -1,0 +1,4 @@
+- names: ["World"]
+  position: [0.3, 0.1, 0]
+  orientation: [0 , 0, 0.785]
+  type: "uniform"

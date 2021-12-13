@@ -1,0 +1,9 @@
+# Baxter robot
+urdf: "package://robowflex_resources/baxter/urdf/baxter.urdf.xacro"
+srdf: "package://robowflex_resources/baxter/config/baxter.srdf"
+limits: "package://robowflex_resources/baxter/config/joint_limits.yaml"
+kinematics: "package://robowflex_resources/baxter/config/kinematics.yaml"
+robot_state:
+  joint_state:
+    name: [left_e0, left_e1, left_s0, left_s1, left_w0, left_w1, left_w2, right_e0, right_e1, right_s0, right_s1, right_w0, right_w1, right_w2, l_gripper_r_finger_joint, l_gripper_l_finger_joint, r_gripper_r_finger_joint, r_gripper_l_finger_joint]
+    position: [0.00421845, 1.39861, -0.00345146, 0.0118884, 0.0145728, 0.238918, 0.00076699, 0.00230097, 1.41586, 0.00115049, 0.0145728, -0.00115049, 0.253107, -0.18868, 0.05, 0.05, 0.05, 0.05]

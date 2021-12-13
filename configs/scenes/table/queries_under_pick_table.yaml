@@ -1,0 +1,19 @@
+start_queries:
+  - objects: ["table_top"]
+    tag: "Under"
+    offset:
+      position: [-0.5, 0.0, -0.3]
+      orientation: [0, 0, 0, 1]
+      position_tol: [0.0001, 0.0001, 0.0001]
+      orientation_tol: [0.003, 0.003, 0.003]
+    attached: "False"
+
+goal_queries:
+  - objects: ["Can1"]
+    tag: "Front"
+    offset:
+      position: [-0.2, 0.0, 0.025]
+      orientation: [0, 0, 0, 1]
+      position_tol: [0.0001, 0.0001, 0.0001]
+      orientation_tol: [0.003, 0.003, 0.003]
+    attached: "False"

@@ -1,0 +1,9 @@
+goal_queries:
+  - objects: ["Can1","Can3","Can5","Can7","Can9"]
+    tag: "Front"
+    offset:
+      position: [-0.2, 0.0, 0.05]
+      orientation: [0, 0, 0, 1]
+      position_tol: [0.01, 0.01, 0.01]
+      orientation_tol: [0.01, 0.01, 0.01]
+    attached: "False"

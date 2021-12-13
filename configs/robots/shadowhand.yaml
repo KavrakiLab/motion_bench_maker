@@ -1,0 +1,8 @@
+urdf: package://robowflex_resources/shadowhand/urdf/shadowhand.urdf
+srdf: package://robowflex_resources/shadowhand/config/shadowhand.srdf
+kinematics: package://robowflex_resources/shadowhand/config/kinematics.yaml
+limits: package://robowflex_resources/shadowhand/config/joint_limits.yaml
+robot_state:
+  joint_state:
+    name: [kuka_arm_0_joint, kuka_arm_1_joint, kuka_arm_2_joint, kuka_arm_3_joint, kuka_arm_4_joint, kuka_arm_5_joint, kuka_arm_6_joint, WRJ2, WRJ1, FFJ4, FFJ3, FFJ2, FFJ1, MFJ4, MFJ3, MFJ2, MFJ1, RFJ4, RFJ3, RFJ2, RFJ1, LFJ5, LFJ4, LFJ3, LFJ2, LFJ1, KTHJ5, THJ4, THJ3, THJ2, THJ1]
+    position: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

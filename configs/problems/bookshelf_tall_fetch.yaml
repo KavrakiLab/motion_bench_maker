@@ -1,0 +1,14 @@
+robot_description: package://motion_bench_maker/configs/robots/fetch.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_fetch.yaml
+scene: package://motion_bench_maker/configs/scenes/bookshelf/scene_tall.yaml
+queries: package://motion_bench_maker/configs/scenes/bookshelf/hard_queries_tall.yaml
+variation: package://motion_bench_maker/configs/scenes/bookshelf/variation_tall.yaml
+sensors: package://motion_bench_maker/configs/scenes/bookshelf/sensors_tall.yaml
+planning_group: arm_with_torso
+samples: 100
+base_offset:
+    position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]
+ee_offset:
+    position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]

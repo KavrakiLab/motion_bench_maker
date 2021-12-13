@@ -1,0 +1,520 @@
+planner_configs:
+  SBLkConfigDefault:
+    type: geometric::SBL
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  ESTkConfigDefault:
+    type: geometric::EST
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0 setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability. default: 0.05
+  LBKPIECEkConfigDefault:
+    type: geometric::LBKPIECE
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    border_fraction: 0.9  # Fraction of time focused on boarder default: 0.9
+    min_valid_path_fraction: 0.5  # Accept partially valid moves above fraction. default: 0.5
+  BKPIECEkConfigDefault:
+    type: geometric::BKPIECE
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    border_fraction: 0.9  # Fraction of time focused on boarder default: 0.9
+    failed_expansion_score_factor: 0.5  # When extending motion fails, scale score by factor. default: 0.5
+    min_valid_path_fraction: 0.5  # Accept partially valid moves above fraction. default: 0.5
+  KPIECEkConfigDefault:
+    type: geometric::KPIECE
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability. default: 0.05 
+    border_fraction: 0.9  # Fraction of time focused on boarder default: 0.9 (0.0,1.]
+    failed_expansion_score_factor: 0.5  # When extending motion fails, scale score by factor. default: 0.5
+    min_valid_path_fraction: 0.5  # Accept partially valid moves above fraction. default: 0.5
+  RRTkConfigDefault:
+    type: geometric::RRT
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability? default: 0.05
+  RRTConnectkConfigDefault:
+    type: geometric::RRTConnect
+    range: 0.0   # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  RRTConnectkConfig0_5:
+    type: geometric::RRTConnect
+    range: 0.5   # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  RRTConnectkConfig0_05:
+    type: geometric::RRTConnect
+    range: 0.05   # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  RRTstarkConfigDefault:
+    type: geometric::RRTstar
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability? default: 0.05
+    delay_collision_checking: 1  # Stop collision checking as soon as C-free parent found. default 1
+  BITstarkConfigDefault:
+    type: geometric::BITstar
+  AITstarkConfigDefault:
+    type: geometric::AITstar
+  ThunderConfig:
+    type: geometric::RRTConnect
+    experience: "thunder"    
+  LightningConfig:
+    type: geometric::RRTConnect
+    experience: "lightning"    
+  TRRTkConfigDefault:
+    type: geometric::TRRT
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability? default: 0.05
+    max_states_failed: 10  # when to start increasing temp. default: 10
+    temp_change_factor: 2.0  # how much to increase or decrease temp. default: 2.0
+    min_temperature: 10e-10  # lower limit of temp change. default: 10e-10
+    init_temperature: 10e-6  # initial temperature. default: 10e-6
+    frountier_threshold: 0.0  # dist new state to nearest neighbor to disqualify as frontier. default: 0.0 set in setup() 
+    frountierNodeRatio: 0.1  # 1/10, or 1 nonfrontier for every 10 frontier. default: 0.1
+    k_constant: 0.0  # value used to normalize expresssion. default: 0.0 set in setup()
+  PRMkConfigDefault:
+    type: geometric::PRM
+    max_nearest_neighbors: 10  # use k nearest neighbors. default: 10
+  PRMstarkConfigDefault:
+    type: geometric::PRMstar
+  FMTkConfigDefault:
+    type: geometric::FMT
+    num_samples: 1000  # number of states that the planner should sample. default: 1000
+    radius_multiplier: 1.1  # multiplier used for the nearest neighbors search radius. default: 1.1
+    nearest_k: 1  # use Knearest strategy. default: 1
+    cache_cc: 1  # use collision checking cache. default: 1
+    heuristics: 0  # activate cost to go heuristics. default: 0
+    extended_fmt: 1  # activate the extended FMT*: adding new samples if planner does not finish successfully. default: 1
+  BFMTkConfigDefault:
+    type: geometric::BFMT
+    num_samples: 1000  # number of states that the planner should sample. default: 1000
+    radius_multiplier: 1.0  # multiplier used for the nearest neighbors search radius. default: 1.0
+    nearest_k: 1  # use the Knearest strategy. default: 1
+    balanced: 0  # exploration strategy: balanced true expands one tree every iteration. False will select the tree with lowest maximum cost to go. default: 1
+    optimality: 1  # termination strategy: optimality true finishes when the best possible path is found. Otherwise, the algorithm will finish when the first feasible path is found. default: 1
+    heuristics: 1  # activates cost to go heuristics. default: 1
+    cache_cc: 1  # use the collision checking cache. default: 1
+    extended_fmt: 1  # Activates the extended FMT*: adding new samples if planner does not finish successfully. default: 1
+  PDSTkConfigDefault:
+    type: geometric::PDST
+  STRIDEkConfigDefault:
+    type: geometric::STRIDE
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability. default: 0.05 
+    use_projected_distance: 0  # whether nearest neighbors are computed based on distances in a projection of the state rather distances in the state space itself. default: 0
+    degree: 16  # desired degree of a node in the Geometric Near-neightbor Access Tree (GNAT). default: 16 
+    max_degree: 18  # max degree of a node in the GNAT. default: 12
+    min_degree: 12  # min degree of a node in the GNAT. default: 12
+    max_pts_per_leaf: 6  # max points per leaf in the GNAT. default: 6
+    estimated_dimension: 0.0  # estimated dimension of the free space. default: 0.0
+    min_valid_path_fraction: 0.2  # Accept partially valid moves above fraction. default: 0.2
+  BiTRRTkConfigDefault:
+    type: geometric::BiTRRT
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    temp_change_factor: 0.1  # how much to increase or decrease temp. default: 0.1
+    init_temperature: 100  # initial temperature. default: 100
+    frountier_threshold: 0.0  # dist new state to nearest neighbor to disqualify as frontier. default: 0.0 set in setup() 
+    frountier_node_ratio: 0.1  # 1/10, or 1 nonfrontier for every 10 frontier. default: 0.1
+    cost_threshold: 1e300  # the cost threshold. Any motion cost that is not better will not be expanded. default: inf
+  LBTRRTkConfigDefault:
+    type: geometric::LBTRRT
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability. default: 0.05 
+    epsilon: 0.4  # optimality approximation factor. default: 0.4
+  BiESTkConfigDefault:
+    type: geometric::BiEST
+    range: 0.0   # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  ProjESTkConfigDefault:
+    type: geometric::ProjEST
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+    goal_bias: 0.05  # When close to goal select goal, with this probability. default: 0.05 
+  LazyPRMkConfigDefault:
+    type: geometric::LazyPRM
+    range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  LazyPRMstarkConfigDefault:
+    type: geometric::LazyPRMstar
+  SPARSkConfigDefault:
+    type: geometric::SPARS
+    stretch_factor: 3.0  # roadmap spanner stretch factor. multiplicative upper bound on path quality. It does not make sense to make this parameter more than 3. default: 3.0
+    sparse_delta_fraction: 0.25  # delta fraction for connection distance. This value represents the visibility range of sparse samples. default: 0.25
+    dense_delta_fraction: 0.001  # delta fraction for interface detection. default: 0.001
+    max_failures: 1000  # maximum consecutive failure limit. default: 1000
+  SPARStwokConfigDefault:
+    type: geometric::SPARStwo
+    stretch_factor: 3.0  # roadmap spanner stretch factor. multiplicative upper bound on path quality. It does not make sense to make this parameter more than 3. default: 3.0
+    sparse_delta_fraction: 0.25  # delta fraction for connection distance. This value represents the visibility range of sparse samples. default: 0.25
+    dense_delta_fraction: 0.001  # delta fraction for interface detection. default: 0.001
+    max_failures: 5000  # maximum consecutive failure limit. default: 5000
+  BiEST_0_05:
+    type: geometric::BiEST
+    range: 0.05 
+  BiEST_0_25:
+    type: geometric::BiEST
+    range: 0.25 
+  BiEST_0_50:
+    type: geometric::BiEST
+    range: 0.50 
+  BiEST_0_75:
+    type: geometric::BiEST
+    range: 0.75 
+  BiEST_1_00:
+    type: geometric::BiEST
+    range: 1.00 
+  BiEST_1_25:
+    type: geometric::BiEST
+    range: 1.25 
+  BiEST_1_50:
+    type: geometric::BiEST
+    range: 1.50 
+  BiEST_1_75:
+    type: geometric::BiEST
+    range: 1.75 
+  BiEST_2_00:
+    type: geometric::BiEST
+    range: 2.00 
+  BiEST_2_25:
+    type: geometric::BiEST
+    range: 2.25 
+  BiEST_2_50:
+    type: geometric::BiEST
+    range: 2.50 
+  BiEST_2_75:
+    type: geometric::BiEST
+    range: 2.75 
+  BiEST_3_00:
+    type: geometric::BiEST
+    range: 3.00 
+  BiEST_3_25:
+    type: geometric::BiEST
+    range: 3.25 
+  BiEST_3_50:
+    type: geometric::BiEST
+    range: 3.50 
+  BiEST_3_75:
+    type: geometric::BiEST
+    range: 3.75 
+  BiEST_4_00:
+    type: geometric::BiEST
+    range: 4.00 
+  BiEST_4_25:
+    type: geometric::BiEST
+    range: 4.25 
+  BiEST_4_50:
+    type: geometric::BiEST
+    range: 4.50 
+  BiEST_4_75:
+    type: geometric::BiEST
+    range: 4.75 
+  BiEST_5_00:
+    type: geometric::BiEST
+    range: 5.00 
+  BiEST_5_25:
+    type: geometric::BiEST
+    range: 5.25 
+  BiEST_5_50:
+    type: geometric::BiEST
+    range: 5.50 
+  BiEST_5_75:
+    type: geometric::BiEST
+    range: 5.75 
+  BiEST_6_00:
+    type: geometric::BiEST
+    range: 6.00 
+  BiEST_6_25:
+    type: geometric::BiEST
+    range: 6.25 
+  BiEST_6_50:
+    type: geometric::BiEST
+    range: 6.50 
+  BiEST_6_75:
+    type: geometric::BiEST
+    range: 6.75 
+  BiEST_7_00:
+    type: geometric::BiEST
+    range: 7.00 
+  BKPIECE_0_05:
+    type: geometric::BKPIECE
+    range: 0.05 
+  BKPIECE_0_25:
+    type: geometric::BKPIECE
+    range: 0.25 
+  BKPIECE_0_50:
+    type: geometric::BKPIECE
+    range: 0.50 
+  BKPIECE_0_75:
+    type: geometric::BKPIECE
+    range: 0.75 
+  BKPIECE_1_00:
+    type: geometric::BKPIECE
+    range: 1.00 
+  BKPIECE_1_25:
+    type: geometric::BKPIECE
+    range: 1.25 
+  BKPIECE_1_50:
+    type: geometric::BKPIECE
+    range: 1.50 
+  BKPIECE_1_75:
+    type: geometric::BKPIECE
+    range: 1.75 
+  BKPIECE_2_00:
+    type: geometric::BKPIECE
+    range: 2.00 
+  BKPIECE_2_25:
+    type: geometric::BKPIECE
+    range: 2.25 
+  BKPIECE_2_50:
+    type: geometric::BKPIECE
+    range: 2.50 
+  BKPIECE_2_75:
+    type: geometric::BKPIECE
+    range: 2.75 
+  BKPIECE_3_00:
+    type: geometric::BKPIECE
+    range: 3.00 
+  BKPIECE_3_25:
+    type: geometric::BKPIECE
+    range: 3.25 
+  BKPIECE_3_50:
+    type: geometric::BKPIECE
+    range: 3.50 
+  BKPIECE_3_75:
+    type: geometric::BKPIECE
+    range: 3.75 
+  BKPIECE_4_00:
+    type: geometric::BKPIECE
+    range: 4.00 
+  BKPIECE_4_25:
+    type: geometric::BKPIECE
+    range: 4.25 
+  BKPIECE_4_50:
+    type: geometric::BKPIECE
+    range: 4.50 
+  BKPIECE_4_75:
+    type: geometric::BKPIECE
+    range: 4.75 
+  BKPIECE_5_00:
+    type: geometric::BKPIECE
+    range: 5.00 
+  BKPIECE_5_25:
+    type: geometric::BKPIECE
+    range: 5.25 
+  BKPIECE_5_50:
+    type: geometric::BKPIECE
+    range: 5.50 
+  BKPIECE_5_75:
+    type: geometric::BKPIECE
+    range: 5.75 
+  BKPIECE_6_00:
+    type: geometric::BKPIECE
+    range: 6.00 
+  BKPIECE_6_25:
+    type: geometric::BKPIECE
+    range: 6.25 
+  BKPIECE_6_50:
+    type: geometric::BKPIECE
+    range: 6.50 
+  BKPIECE_6_75:
+    type: geometric::BKPIECE
+    range: 6.75 
+  BKPIECE_7_00:
+    type: geometric::BKPIECE
+    range: 7.00 
+  RRTConnect_0_05:
+    type: geometric::RRTConnect
+    range: 0.05 
+  RRTConnect_0_25:
+    type: geometric::RRTConnect
+    range: 0.25 
+  RRTConnect_0_50:
+    type: geometric::RRTConnect
+    range: 0.50 
+  RRTConnect_0_75:
+    type: geometric::RRTConnect
+    range: 0.75 
+  RRTConnect_1_00:
+    type: geometric::RRTConnect
+    range: 1.00 
+  RRTConnect_1_25:
+    type: geometric::RRTConnect
+    range: 1.25 
+  RRTConnect_1_50:
+    type: geometric::RRTConnect
+    range: 1.50 
+  RRTConnect_1_75:
+    type: geometric::RRTConnect
+    range: 1.75 
+  RRTConnect_2_00:
+    type: geometric::RRTConnect
+    range: 2.00 
+  RRTConnect_2_25:
+    type: geometric::RRTConnect
+    range: 2.25 
+  RRTConnect_2_50:
+    type: geometric::RRTConnect
+    range: 2.50 
+  RRTConnect_2_75:
+    type: geometric::RRTConnect
+    range: 2.75 
+  RRTConnect_3_00:
+    type: geometric::RRTConnect
+    range: 3.00 
+  RRTConnect_3_25:
+    type: geometric::RRTConnect
+    range: 3.25 
+  RRTConnect_3_50:
+    type: geometric::RRTConnect
+    range: 3.50 
+  RRTConnect_3_75:
+    type: geometric::RRTConnect
+    range: 3.75 
+  RRTConnect_4_00:
+    type: geometric::RRTConnect
+    range: 4.00 
+  RRTConnect_4_25:
+    type: geometric::RRTConnect
+    range: 4.25 
+  RRTConnect_4_50:
+    type: geometric::RRTConnect
+    range: 4.50 
+  RRTConnect_4_75:
+    type: geometric::RRTConnect
+    range: 4.75 
+  RRTConnect_5_00:
+    type: geometric::RRTConnect
+    range: 5.00 
+  RRTConnect_5_25:
+    type: geometric::RRTConnect
+    range: 5.25 
+  RRTConnect_5_50:
+    type: geometric::RRTConnect
+    range: 5.50 
+  RRTConnect_5_75:
+    type: geometric::RRTConnect
+    range: 5.75 
+  RRTConnect_6_00:
+    type: geometric::RRTConnect
+    range: 6.00 
+  RRTConnect_6_25:
+    type: geometric::RRTConnect
+    range: 6.25 
+  RRTConnect_6_50:
+    type: geometric::RRTConnect
+    range: 6.50 
+  RRTConnect_6_75:
+    type: geometric::RRTConnect
+    range: 6.75 
+  RRTConnect_7_00:
+    type: geometric::RRTConnect
+    range: 7.00 
+manipulator:
+  planner_configs:
+    - SBLkConfigDefault
+    - ESTkConfigDefault
+    - LBKPIECEkConfigDefault
+    - BKPIECEkConfigDefault
+    - KPIECEkConfigDefault
+    - RRTkConfigDefault
+    - RRTConnectkConfigDefault
+    - RRTConnectkConfig0_5
+    - RRTConnectkConfig0_05
+    - RRTConnectkConfigDefault
+    - RRTstarkConfigDefault
+    - TRRTkConfigDefault
+    - PRMkConfigDefault
+    - PRMstarkConfigDefault
+    - FMTkConfigDefault
+    - BFMTkConfigDefault
+    - PDSTkConfigDefault
+    - STRIDEkConfigDefault
+    - BiTRRTkConfigDefault
+    - LBTRRTkConfigDefault
+    - BiESTkConfigDefault
+    - ProjESTkConfigDefault
+    - LazyPRMkConfigDefault
+    - LazyPRMstarkConfigDefault
+    - SPARSkConfigDefault
+    - SPARStwokConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
+    - ThunderConfig 
+    - LightningConfig 
+    - RRTConnect_0_05
+    - RRTConnect_0_25
+    - RRTConnect_0_50
+    - RRTConnect_0_75
+    - RRTConnect_1_00
+    - RRTConnect_1_25
+    - RRTConnect_1_50
+    - RRTConnect_1_75
+    - RRTConnect_2_00
+    - RRTConnect_2_25
+    - RRTConnect_2_50
+    - RRTConnect_2_75
+    - RRTConnect_3_00
+    - RRTConnect_3_25
+    - RRTConnect_3_50
+    - RRTConnect_3_75
+    - RRTConnect_4_00
+    - RRTConnect_4_25
+    - RRTConnect_4_50
+    - RRTConnect_4_75
+    - RRTConnect_5_00
+    - RRTConnect_5_25
+    - RRTConnect_5_50
+    - RRTConnect_5_75
+    - RRTConnect_6_00
+    - RRTConnect_6_25
+    - RRTConnect_6_50
+    - RRTConnect_6_75
+    - RRTConnect_7_00
+    - BiEST_0_05
+    - BiEST_0_25
+    - BiEST_0_50
+    - BiEST_0_75
+    - BiEST_1_00
+    - BiEST_1_25
+    - BiEST_1_50
+    - BiEST_1_75
+    - BiEST_2_00
+    - BiEST_2_25
+    - BiEST_2_50
+    - BiEST_2_75
+    - BiEST_3_00
+    - BiEST_3_25
+    - BiEST_3_50
+    - BiEST_3_75
+    - BiEST_4_00
+    - BiEST_4_25
+    - BiEST_4_50
+    - BiEST_4_75
+    - BiEST_5_00
+    - BiEST_5_25
+    - BiEST_5_50
+    - BiEST_5_75
+    - BiEST_6_00
+    - BiEST_6_25
+    - BiEST_6_50
+    - BiEST_6_75
+    - BiEST_7_00
+    - BKPIECE_0_05
+    - BKPIECE_0_25
+    - BKPIECE_0_50
+    - BKPIECE_0_75
+    - BKPIECE_1_00
+    - BKPIECE_1_25
+    - BKPIECE_1_50
+    - BKPIECE_1_75
+    - BKPIECE_2_00
+    - BKPIECE_2_25
+    - BKPIECE_2_50
+    - BKPIECE_2_75
+    - BKPIECE_3_00
+    - BKPIECE_3_25
+    - BKPIECE_3_50
+    - BKPIECE_3_75
+    - BKPIECE_4_00
+    - BKPIECE_4_25
+    - BKPIECE_4_50
+    - BKPIECE_4_75
+    - BKPIECE_5_00
+    - BKPIECE_5_25
+    - BKPIECE_5_50
+    - BKPIECE_5_75
+    - BKPIECE_6_00
+    - BKPIECE_6_25
+    - BKPIECE_6_50
+    - BKPIECE_6_75
+    - BKPIECE_7_00
+  projection_evaluator: link(ee_link)
+  longest_valid_segment_fraction: 0.001

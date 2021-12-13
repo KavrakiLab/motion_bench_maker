@@ -1,0 +1,29 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Arguments for ROS parameters -->
+  <arg name="robot" default="package://motion_bench_maker/configs/robots/fetch.yaml" />
+  <arg name="scene" default="package://motion_bench_maker/configs/scenes/bookshelf/tall.yaml" />
+  <arg name="variation" default="package://motion_bench_maker/configs/scenes/bookshelf/variation.yaml" />
+
+  <!-- Rviz Parameters -->
+  <arg name="config" default="visualize" />
+
+  <!-- Start the create dataset node -->
+  <node  name="sample_scenes" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="sample_scenes" output="screen" required = "true" > 
+    
+    <param name="robot" value="$(arg robot)" />
+    <param name="scene" value="$(arg scene)" />
+    <param name="variation" value="$(arg variation)" />
+  </node>
+
+  <!-- Start rviz since it is always required -->
+  <include file="$(find motion_bench_maker)/launch/rviz.launch" >
+    <arg name="config" value="$(arg config)" />
+  </include>
+  
+</launch>

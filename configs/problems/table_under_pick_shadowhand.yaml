@@ -1,0 +1,28 @@
+robot_description: package://motion_bench_maker/configs/robots/shadowhand.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_shadow.yaml
+scene: package://motion_bench_maker/configs/scenes/table/scene_table.yaml
+queries: package://motion_bench_maker/configs/scenes/table/queries_under_pick_table_shadow.yaml
+variation: package://motion_bench_maker/configs/scenes/table/variation_table.yaml
+sensors: package://motion_bench_maker/configs/scenes/table/sensors_table.yaml
+planning_group: all_fingers 
+samples: 100
+base_offset:
+    position    : [0, 0, -0.3]
+    orientation : [0, 0, 0, 1]
+ee_offset:
+  - position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "ffdistal"
+  - position    : [0.02, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "mfdistal"
+  - position    : [0.04, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "rfdistal"
+  - position    : [0.06, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "lfdistal"
+  - position    : [-0.02, -0.13, 0.02]
+    orientation : [0.0, 0.0, 0.996, 0.087 ]
+    ee_tip: "thdistal"
+ee_dependency: True

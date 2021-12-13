@@ -1,0 +1,16 @@
+<launch>
+
+  <!-- GDB Debug Option -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Start the create dataset node -->
+  <node  name="$(anon urdf_scenes)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="urdf_scenes" output="screen" required = "true"/> 
+  
+
+  <include file="$(find motion_bench_maker)/launch/rviz.launch" >
+     <arg name="config" value="visualize" />
+  </include>
+    
+</launch>

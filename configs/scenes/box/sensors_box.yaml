@@ -1,0 +1,20 @@
+camera_config: package://motion_bench_maker/configs/sensors/camera.yaml
+look_objects:
+    - name: "side_left" 
+      position: [0, 0.0, 0.0]
+    - name: "side_right" 
+      position: [0, 0.0, 0.0]
+    - name: "base" 
+      position: [-0.1, 0.0, 0.0]
+
+cam_points:
+    - [0.0, 0.0, 0.6]
+    - [0.0, 0.0, 0.8]
+    - [0.0, 0.0, 1.0]
+    - [0.0, 0.0, 1.2]
+    - [0.0, 0.0, 1.4]
+    - [0.0, 0.0, 1.6]
+    - [0.0, 0.0, 1.8]
+    - [0.0, 0.0, 2]
+
+resolution: 0.025

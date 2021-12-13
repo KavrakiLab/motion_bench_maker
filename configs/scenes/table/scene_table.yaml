@@ -1,0 +1,110 @@
+world:
+  collision_objects:
+    - header:
+        frame_id: base_link
+      id: Can1
+      primitives:
+        - type: cylinder
+          dimensions: [0.12, 0.03]
+      primitive_poses:
+        - position: [0.85, 0, 0.8]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Cube
+      primitives:
+        - type: box
+          dimensions: [0.25, 0.25, 0.25]
+      primitive_poses:
+        - position: [0.75, 0.4, 0.85]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: table_leg_left_back
+      primitives:
+        - type: box
+          dimensions: [0.05, 0.05, 0.7]
+      primitive_poses:
+        - position: [1.5, 0.85, 0.35]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: table_leg_left_front
+      primitives:
+        - type: box
+          dimensions: [0.05, 0.05, 0.7]
+      primitive_poses:
+        - position: [0.6, 0.85, 0.35]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: table_leg_right_back
+      primitives:
+        - type: box
+          dimensions: [0.05, 0.05, 0.7]
+      primitive_poses:
+        - position: [1.5, -0.85, 0.35]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: table_leg_right_front
+      primitives:
+        - type: box
+          dimensions: [0.05, 0.05, 0.7]
+      primitive_poses:
+        - position: [0.6, -0.85, 0.35]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: table_top
+      primitives:
+        - type: box
+          dimensions: [1.2, 2, 0.04]
+      primitive_poses:
+        - position: [1.05, 0, 0.7]
+          orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Object1  
+      primitives:
+          - type: cylinder
+            dimensions: [0.35, 0.05]
+      primitive_poses:
+          - position: [1.35, 0, 0.85]
+            orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Object2  
+      primitives:
+          - type: box
+            dimensions: [0.2, 0.02, 0.4]
+      primitive_poses:
+          - position: [1.05, -0.2, 0.9]
+            orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Object3  
+      primitives:
+          - type: box
+            dimensions: [0.02, 0.2, 0.4]
+      primitive_poses:
+          - position: [0.65, 0.2, 0.9]
+            orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Object4  
+      primitives:
+          - type: box
+            dimensions: [0.2, 0.05, 0.35]
+      primitive_poses:
+          - position: [0.65, -0.2, 0.9]
+            orientation: [0, 0, 0, 1]
+    - header:
+        frame_id: base_link
+      id: Object5  
+      primitives:
+          - type: box
+            dimensions: [0.2, 0.05, 0.35]
+      primitive_poses:
+          - position: [1.05, 0.2, 0.9]
+            orientation: [0, 0, 0, 1]

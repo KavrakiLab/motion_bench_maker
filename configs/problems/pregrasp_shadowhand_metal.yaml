@@ -1,0 +1,30 @@
+robot_description: package://motion_bench_maker/configs/robots/shadowhand.yaml
+ompl_config: package://motion_bench_maker/configs/ompl/ompl_planning_shadow.yaml
+scene: package://motion_bench_maker/configs/scenes/pregrasp/metal.urdf
+queries: package://motion_bench_maker/configs/scenes/pregrasp/queries_metal.yaml
+variation: package://motion_bench_maker/configs/scenes/pregrasp/variation_metal.yaml
+sensors: package://motion_bench_maker/configs/scenes/pregrasp/sensors_metal.yaml
+planning_group: all_fingers
+samples: 20
+base_offset:
+    position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]
+ee_offset:
+  - position    : [0, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "ffdistal"
+  - position    : [0.02, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "mfdistal"
+  - position    : [0.04, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "rfdistal"
+  - position    : [0.06, 0, 0]
+    orientation : [0, 0, 0, 1]
+    ee_tip: "lfdistal"
+  - position    : [0.03, -0.09, 0]
+    orientation : [0.66, 0.118, 0.697, 0.230]
+    ee_tip: "thdistal"
+
+
+ee_dependency: True

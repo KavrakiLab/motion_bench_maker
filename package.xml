@@ -1,0 +1,26 @@
+<package format="2">
+  <name>motion_bench_maker</name>
+  <version>0.0.0</version>
+  <description>The motion_bench_maker package</description>
+
+  <maintainer email="chamzas@rice.edu">Constantinos Chamzas</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <!-- RobowFlex-->
+  <depend>robowflex_library</depend>
+  <depend>robowflex_ompl</depend>
+  <depend>robowflex_resources</depend>
+
+
+  <!-- TODO:REPLACE WITH roboflex -->
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
+  <depend>pcl_ros</depend>
+
+  <!-- Other-->
+  <depend>yaml-cpp</depend>
+  <depend>gl_depth_sim</depend>
+</package>

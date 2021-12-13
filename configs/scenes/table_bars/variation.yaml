@@ -1,0 +1,4 @@
+- names: ["right_bars", "left_bars"]
+  position: [0.0 , 0.1, 0]
+  orientation: [0, 0, 0]
+  type: "uniform"

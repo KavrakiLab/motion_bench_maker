@@ -1,0 +1,10 @@
+urdf: package://robowflex_resources/ur/robots/ur5_robotiq_robot_limited_small_table.urdf.xacro
+srdf: package://robowflex_resources/ur/config/ur5/ur5_robotiq85_table.srdf.xacro
+kinematics: package://robowflex_resources/ur/config/ur5/kinematics.yaml
+limits: package://robowflex_resources/ur/config/ur5/joint_limits.yaml
+
+#default robot state
+robot_state:
+  joint_state:
+    name: [shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint, robotiq_85_left_inner_knuckle_joint, robotiq_85_left_finger_tip_joint, robotiq_85_left_knuckle_joint, robotiq_85_right_inner_knuckle_joint, robotiq_85_right_finger_tip_joint, robotiq_85_right_knuckle_joint]
+    position: [1.57, -1.5707, 0.0, -1.5707, -1.57, 3.14, 0, 0, 0, 0, 0, 0]

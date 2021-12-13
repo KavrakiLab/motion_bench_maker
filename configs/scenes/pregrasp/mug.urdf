@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="mug">
+<link name="body">
+  <collision>
+    <origin rpy="0 0 1.57" xyz="0.975 0 0.22"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/mug.stl"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin rpy="0 0 1.57" xyz="0.975 0 0.22"/>
+    <geometry>
+      <mesh filename="package://motion_bench_maker/configs/scenes/pregrasp/meshes/mug.stl"/>
+    </geometry>
+  </visual>
+  </link>
+</robot>
