@@ -78,7 +78,9 @@ int main(int argc, char **argv)
         problem_generator->setParameters(robot, group, gp->ee_offset, gp->tips, gp->ee_dependency);
 
     // Create an octomap generator.
-    auto octomap_generator = std::make_shared<OctomapGenerator>(gp->sensors);
+    OctomapGeneratorPtr octomap_generator = nullptr;
+    if (sensed)
+        octomap_generator = std::make_shared<OctomapGenerator>(gp->sensors);
 
     // Create scene_sampler
     auto scene_sampler = std::make_shared<SceneSampler>(gp->variation, gp->base_offset);
@@ -104,7 +106,7 @@ int main(int argc, char **argv)
             scene_geom = scene_sampler->sample(nominal_urdf, robot);
 
         auto scene = scene_geom->deepCopy();
-        if (sensed)
+        if (sensed and octomap_generator)
             octomap_generator->geomToSensed(scene_geom, scene, visualize_sensed ? rviz : nullptr);
 
         // Update the scene in the problem_generator
