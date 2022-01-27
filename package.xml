@@ -18,9 +18,7 @@
   <!-- TODO:REPLACE WITH roboflex -->
   <depend>tf</depend>
   <depend>tf_conversions</depend>
-  <depend>pcl_ros</depend>
 
   <!-- Other-->
   <depend>yaml-cpp</depend>
-  <depend>gl_depth_sim</depend>
 </package>

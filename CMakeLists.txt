@@ -7,8 +7,6 @@ set(LIBRARY_NAME ${PROJECT_NAME})
 list(APPEND CATKIN_SOURCES
   robowflex_library
   robowflex_ompl
-  gl_depth_sim
-  pcl_ros # Used for interfaces extension
   tf # Used for ROS example
   tf_conversions # Used for ROS example
 )
@@ -29,7 +27,6 @@ list(APPEND SOURCES
     src/scene_sampler.cpp
     src/yaml.cpp
     src/problem_generator.cpp
-    src/octomap_generator.cpp
   )
 
 list(APPEND INCLUDES
@@ -54,34 +51,9 @@ add_library(${LIBRARY_NAME} ${SOURCES})
 set_target_properties(${LIBRARY_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION})
 target_link_libraries(${LIBRARY_NAME} ${LIBRARIES})
 
-add_executable(visualize scripts/visualize.cpp)
-target_link_libraries(visualize ${LIBRARY_NAME})
-add_dependencies(visualize ${catkin_EXPORTED_TARGETS})
-
-add_executable(benchmark scripts/benchmark.cpp)
-target_link_libraries(benchmark ${LIBRARY_NAME})
-add_dependencies(benchmark ${catkin_EXPORTED_TARGETS})
-
-add_executable(paper_example scripts/paper_example.cpp)
-target_link_libraries(paper_example ${LIBRARY_NAME})
-add_dependencies(paper_example ${catkin_EXPORTED_TARGETS})
-
-
 add_executable(generate scripts/generate.cpp)
 target_link_libraries(generate ${LIBRARY_NAME})
 add_dependencies(generate ${catkin_EXPORTED_TARGETS})
-
-add_executable(sample_scenes scripts/sample_scenes.cpp)
-target_link_libraries(sample_scenes ${LIBRARY_NAME})
-add_dependencies(sample_scenes ${catkin_EXPORTED_TARGETS})
-
-add_executable(urdf_scenes scripts/urdf_scenes.cpp)
-target_link_libraries(urdf_scenes ${LIBRARY_NAME})
-add_dependencies(urdf_scenes ${catkin_EXPORTED_TARGETS})
-
-add_executable(sensed_scenes scripts/sensed_scenes.cpp)
-target_link_libraries(sensed_scenes ${LIBRARY_NAME})
-add_dependencies(sensed_scenes ${catkin_EXPORTED_TARGETS})
 
 #add_executable(benchmark_simple scripts/benchmark_simple.cpp)
 #target_link_libraries(benchmark_simple ${LIBRARY_NAME})

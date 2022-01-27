@@ -9,7 +9,6 @@
 #include <robowflex_library/tf.h>
 #include <robowflex_library/planning.h>
 #include <moveit/robot_state/robot_state.h>
-#include <pcl_ros/point_cloud.h>
 
 // Yaml
 #include <yaml-cpp/yaml.h>
@@ -77,7 +76,6 @@ namespace robowflex
         // Load functions from yaml files
         bool loadSceneYaml(const ScenePtr &scene) const;
         bool loadSceneUrdf(const RobotPtr &robot) const;
-        void loadPCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const;
         bool loadGeometricScene(const int &index, const ScenePtr &scene) const;
         bool loadSensedScene(const int &index, const ScenePtr &scene) const;
         bool loadRequest(const int &index, const MotionRequestBuilderPtr &request) const;
@@ -87,7 +85,6 @@ namespace robowflex
         // Store functions from yaml files
         void saveGeometricScene(const int &index, const SceneConstPtr &scene) const;
         void saveSensedScene(const int &index, const SceneConstPtr &scene) const;
-        void savePCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const;
         void saveRequest(const int &index, const MotionRequestBuilderConstPtr &request) const;
         void saveTrajectory(const int &index, const TrajectoryConstPtr &traj) const;
         void saveConfigToDataset() const;

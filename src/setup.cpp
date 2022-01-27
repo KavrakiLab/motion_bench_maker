@@ -214,16 +214,6 @@ bool Setup::loadSensedScene(const int &index, const ScenePtr &scene) const
     return true;
 }
 
-void Setup::loadPCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const
-{
-    auto scene_file =
-        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index) + ".pcd");
-
-    int code = pcl::io::loadPCDFile(scene_file, *pcd);
-    if (code)
-        ROS_ERROR("Failed to read file: %s for pointcloud scene, error code: %d", scene_file.c_str(), code);
-}
-
 bool Setup::loadTrajectory(const int &index, const robot_state::RobotState &ref_state,
                            const TrajectoryPtr &traj) const
 {
@@ -269,16 +259,6 @@ void Setup::saveSensedScene(const int &index, const SceneConstPtr &scene) const
 
     if (!scene->toYAMLFile(scene_file))
         ROS_ERROR("Failed to save file: %s for scene", scene_file.c_str());
-}
-
-void Setup::savePCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const
-{
-    auto scene_file =
-        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index) + ".pcd");
-
-    int code = pcl::io::savePCDFileBinary(scene_file, *pcd);
-    if (code)
-        ROS_ERROR("Failed to save file: %s for pointcloud scene, error code: %d", scene_file.c_str(), code);
 }
 
 void Setup::saveTrajectory(const int &index, const TrajectoryConstPtr &traj) const

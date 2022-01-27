@@ -9,8 +9,6 @@
 #include <motion_bench_maker/scene_sampler.h>
 #include <motion_bench_maker/yaml.h>
 
-#include "gl_depth_sim/sim_depth_camera.h"
-
 // ROS
 #include <ros/console.h>
 
@@ -283,96 +281,6 @@ bool IO::loadQueries(const std::string &config, ProblemGenerator::ObjectQueryMap
 
         else
             ROS_ERROR("Queries node is not a sequence!");
-    }
-    catch (std::exception &e)
-    {
-        ROS_ERROR("In YAML File %s %s", config.c_str(), e.what());
-        return false;
-    }
-    return true;
-}
-
-bool IO::loadCameraProperties(const std::string &config, gl_depth_sim::CameraProperties &props)
-
-{
-    auto yaml = IO::loadFileToYAML(config);
-    if (!yaml.first)
-    {
-        ROS_ERROR("Failed to load YAML file `%s`.", config.c_str());
-        return false;
-    }
-
-    auto &node = yaml.second;
-    if (IO::isNode(node["focal_length_x"]))
-        props.fx = node["focal_length_x"].as<double>();
-    else
-        throw Exception(1, "No focal_length_x entry!");
-
-    if (IO::isNode(node["focal_length_y"]))
-        props.fy = node["focal_length_y"].as<double>();
-    else
-        throw Exception(1, "No focal_length_y entry!");
-
-    if (IO::isNode(node["width"]))
-        props.width = node["width"].as<int>();
-    else
-        throw Exception(1, "No width entry!");
-
-    if (IO::isNode(node["height"]))
-        props.height = node["height"].as<int>();
-    else
-        throw Exception(1, "No height entry!");
-
-    if (IO::isNode(node["z_near"]))
-        props.z_near = node["z_near"].as<double>();
-    else
-        throw Exception(1, "No z_near entry!");
-
-    if (IO::isNode(node["z_far"]))
-        props.z_far = node["z_far"].as<double>();
-    else
-        throw Exception(1, "No z_far entry!");
-
-    return false;
-}
-
-bool IO::loadSensors(const std::string &config, OctomapGenerator::Sensors &sensors)
-{
-    auto yaml = IO::loadFileToYAML(config);
-    if (!yaml.first)
-    {
-        ROS_ERROR("Failed to load YAML file `%s`.", config.c_str());
-        return false;
-    }
-    try
-    {
-        auto &node = yaml.second;
-        if (IO::isNode(node["camera_config"]))
-            sensors.camera_config = node["camera_config"].as<std::string>();
-        else
-            throw Exception(1, "No camera_config");
-
-        if (node["look_objects"].IsSequence())
-            for (const auto &n : node["look_objects"])
-            {
-                const auto name = n["name"].as<std::string>();
-                const auto pos = YAMLToEigen(n["position"]);
-                const auto pair = std::pair<std::string, Eigen::Vector3d>(name, pos);
-                sensors.look_objects.emplace_back(pair);
-            }
-        else
-            throw Exception(1, "look objects is not a sequence");
-
-        if (node["cam_points"].IsSequence())
-            for (const auto &n : node["cam_points"])
-                sensors.cam_points.push_back(YAMLToEigen(n));
-        else
-            throw Exception(1, "cam_points is not a sequence");
-
-        if (IO::isNode(node["resolution"]))
-            sensors.resolution = node["resolution"].as<double>();
-        else
-            throw Exception(1, "camera_config!");
     }
     catch (std::exception &e)
     {
