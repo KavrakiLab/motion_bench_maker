@@ -37,9 +37,14 @@ roslaunch motion_bench_maker visualize.launch sensed:=true geometric:=true datas
 # Benchmark the created problems 
 roslaunch motion_bench_maker benchmark.launch dataset:="package://motion_bench_maker/problems/box_fetch/" planners:="RRTConnect,BiEST,BKPIECE"
 ```
+
 The scripts ``problems/download {robot_name}`` will download the prefabricated datasets per robot  
-The scripts ``problems/generate_{robot_name}.sh`` will generate problems (start,goal,scene,path) from all the available datasets for each robot.   
+The scripts ``problems/generate_{robot_name}.sh`` will generate problems (start,goal,scene,path) from all the datasets for each robot.   
 **Note:** each dataset can take several hours to be generated.
+
+The scripts ``benchmark/benchmark_{robot_name}_{exp_name}.sh`` will run different benchmarking experiments.   
+**Note:** Currently AIT*, and BIT* are not included by default with MoveIt. You would have to modify the MoveIt code [here](https://github.com/ros-planning/moveit/blob/master/moveit_planners/ompl/ompl_interface/src/planning_context_manager.cpp#L42) and [here](https://github.com/ros-planning/moveit/blob/master/moveit_planners/ompl/ompl_interface/src/planning_context_manager.cpp#L266) accordingly to add these planners. 
+
 
 ## Detailed description
 The main functionality lies in the following somewhat indepentent components:
