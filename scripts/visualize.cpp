@@ -17,6 +17,9 @@
 // Robowflex ompl
 #include <robowflex_ompl/ompl_interface.h>
 
+// PCL
+#include <pcl_conversions/pcl_conversions.h>
+
 using namespace robowflex;
 int main(int argc, char **argv)
 {
@@ -65,15 +68,14 @@ int main(int argc, char **argv)
             setup->loadSensedScene(i, scene_sensed);
             rviz->updateScene(scene_sensed);
         }
-        // if (pcd)
-        //{
-        //    // setup->loadPCDScene(i, scene_pcd);
-        //    // for (const auto &p : *scene_pcd)
-        //    //    std::cout << p.x << p.y << p.z;
-
-        //    //#TODO not implemented yet
-        //    // rviz->updateScene(scene_pcd);
-        //}
+        if (pcd)
+        {
+            setup->loadPCDScene(i, scene_pcd);
+            sensor_msgs::PointCloud2 msg;
+            pcl::toROSMsg(*scene_pcd, msg);
+            msg.header.frame_id = "map";
+            rviz->updatePCD(msg);
+        }
 
         auto request = std::make_shared<MotionRequestBuilder>(robot, setup->getGroup());
         setup->loadRequest(i, request);
