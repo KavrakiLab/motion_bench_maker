@@ -67,9 +67,9 @@ int main(int argc, char **argv)
         }
 
         if (octo)
-            setup->savePCDScene(i, octomap_generator->getLastPointCloud());
-        if (pcd)
             setup->saveSensedScene(i, scene_sensed);
+        if (pcd)
+            setup->savePCDScene(i, octomap_generator->getLastPointCloud());
     }
 
     return 0;
