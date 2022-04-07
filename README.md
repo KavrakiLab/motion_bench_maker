@@ -22,9 +22,11 @@ You can generate a simple dataset, visualize it and run some basic benchmarking 
  - Benchmark script: Loads a problem set, and benchmarks for a specific set of planners in geometric or sensed scenes.
 
 ```
-# To download all 40 prefabricated dataset: 
+# To download the prefabricated dataset: 
 cd problems
 ./download.sh all 
+
+
 
 # ... Alternatively you can generate new dataset from the configuration files. 
 # For a detailed explanation of each the parameters see the launch files in  launch/
@@ -39,6 +41,8 @@ roslaunch motion_bench_maker benchmark.launch dataset:="package://motion_bench_m
 ```
 
 The scripts ``problems/download {robot_name}`` will download the prefabricated datasets per robot  
+**Note** This script does not download the pointcloud version due to their size. If you wish to download the datasets including the pointclouds download them directly from [full_datasets](https://rice.box.com/s/7uwuzor40vys1xx0xec4e8mxa8fkdtnn)
+
 The scripts ``problems/generate_{robot_name}.sh`` will generate problems (start,goal,scene,path) from all the datasets for each robot.   
 **Note:** each dataset can take several hours to be generated.
 
