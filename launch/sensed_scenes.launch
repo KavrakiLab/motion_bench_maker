@@ -16,6 +16,8 @@
     
     <param name="dataset" value="$(arg dataset)" />
     <param name="visualize" value="$(arg visualize)" />
+    <param name="pcd" value="$(arg pcd)" />
+    <param name="octo" value="$(arg octo)"/>
     
   </node>
 
