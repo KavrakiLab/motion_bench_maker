@@ -276,7 +276,7 @@ void Setup::savePCDScene(const int &index, const std::shared_ptr<pcl::PointCloud
     auto scene_file =
         IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index) + ".pcd");
 
-    int code = pcl::io::savePCDFileBinary(scene_file, *pcd);
+    int code = pcl::io::savePCDFileBinaryCompressed(scene_file, *pcd);
     if (code)
         ROS_ERROR("Failed to save file: %s for pointcloud scene, error code: %d", scene_file.c_str(), code);
 }

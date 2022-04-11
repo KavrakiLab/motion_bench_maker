@@ -18,6 +18,11 @@
 #include <robowflex_ompl/ompl_interface.h>
 
 using namespace robowflex;
+/* This scripts loads geometric scenes and converts them to octomaps an pointclouds.
+ * Please note that the generated octomaps might not constitute valid motion planning problems, because the
+ * octomap will be an overapproximation of the geometry. Please use the generate script to create valid
+ * octomap/geometry pairs.
+ */
 
 int main(int argc, char **argv)
 {
@@ -25,7 +30,7 @@ int main(int argc, char **argv)
     ros::NodeHandle node("~");
 
     std::string dataset, sensor_config;
-    bool visualize;
+    bool visualize, octo, pcd;
 
     std::string exec_name = "sensed_scenes";
 
@@ -34,6 +39,8 @@ int main(int argc, char **argv)
     // Parsing the parametes from the param server
     error += !parser::get(exec_name, node, "dataset", dataset);
     error += !parser::get(exec_name, node, "visualize", visualize);
+    error += !parser::get(exec_name, node, "octo", octo);
+    error += !parser::get(exec_name, node, "pcd", pcd);
     parser::shutdownIfError(exec_name, error);
 
     auto setup = std::make_shared<Setup>(dataset);
@@ -56,10 +63,13 @@ int main(int argc, char **argv)
             rviz->updateScene(scene_geom);
             rviz->updateScene(scene_sensed);
             rviz->updateMarkers();
-            parser::waitForUser("Wait for enter");
+            parser::waitForUser("Press enter");
         }
 
-        setup->saveSensedScene(i, scene_sensed);
+        if (octo)
+            setup->saveSensedScene(i, scene_sensed);
+        if (pcd)
+            setup->savePCDScene(i, octomap_generator->getLastPointCloud());
     }
 
     return 0;

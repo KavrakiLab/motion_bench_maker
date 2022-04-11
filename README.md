@@ -1,10 +1,10 @@
-# motion_bench_maker
-
-# Datasets for planning problems
-[motion_bench_maker](https://github.com/KavrakiLab/motion_bench_maker) is a ROS package that
-
+# MotionBenchMaker
+[MotionBenchMaker](https://github.com/KavrakiLab/motion_bench_maker) is a tool to generate and benchmark datasets for manipulation problems.   
+This repository:  
 1. Contains pre-generated realistic datasets for motion planning.
 2. Provides convenient tools to synthetically generate such datasets.
+This repository is actively maintained and updated by the authors to. For question/comments please feel free to open an issue, or contact the authors directly.
+
 
 ## Dependencies/Instalation
 To build this package you need to have in your ros workspace:
@@ -14,7 +14,7 @@ To build this package you need to have in your ros workspace:
 4. The [bio_ik](https://github.com/TAMS-Group/bio_ik) kinematics solver for multi-tip robots, e.g. shadowhand or baxter bi-manual manipulations
 
 ## Simple usage 
-You can generate a simple dataset, visualize it and run some basic benchmarking with the following 3 main scripts.
+You can generate a simple dataset, visualize it and run some basic benchmarking with the following 4 scripts.
  
  - Download script: Download the 40 different prefabricated datasets. 
  - Generate script: Using a dataset specification (robot, scene, variation, queries)  generate a distribution of problems. 
@@ -22,13 +22,13 @@ You can generate a simple dataset, visualize it and run some basic benchmarking 
  - Benchmark script: Loads a problem set, and benchmarks for a specific set of planners in geometric or sensed scenes.
 
 ```
-# To download all 40 prefabricated dataset: 
+# To download the prefabricated dataset: 
 cd problems
 ./download.sh all 
 
-# ... Alternatively you can generate new dataset from the configuration files. 
+# ... Alternatively you can generate a new dataset from the configuration files. 
 # For a detailed explanation of each the parameters see the launch files in  launch/
-# To Generate a dataset with sensed and geometric representations under using the specificiation in configs/problem/box_fetch.yaml 
+# To generate a dataset with sensed and geometric representations under using the specificiation in configs/problem/box_fetch.yaml 
 roslaunch motion_bench_maker generate.launch sensed:=true config:="package://motion_bench_maker/configs/problems/box_fetch.yaml" dataset:="package://motion_bench_maker/problems/box_fetch/"
 
 # Visualize the created problems in Rviz 
@@ -39,11 +39,30 @@ roslaunch motion_bench_maker benchmark.launch dataset:="package://motion_bench_m
 ```
 
 The scripts ``problems/download {robot_name}`` will download the prefabricated datasets per robot  
+**Note:** This script does not download the pointcloud version due to their size. If you wish to download the datasets including the pointclouds download them directly from [full_datasets](https://rice.box.com/s/7uwuzor40vys1xx0xec4e8mxa8fkdtnn)
+
 The scripts ``problems/generate_{robot_name}.sh`` will generate problems (start,goal,scene,path) from all the datasets for each robot.   
 **Note:** each dataset can take several hours to be generated.
 
 The scripts ``benchmark/benchmark_{robot_name}_{exp_name}.sh`` will run different benchmarking experiments.   
 **Note:** Currently AIT*, and BIT* are not included by default with MoveIt. You would have to modify the MoveIt code [here](https://github.com/ros-planning/moveit/blob/master/moveit_planners/ompl/ompl_interface/src/planning_context_manager.cpp#L42) and [here](https://github.com/ros-planning/moveit/blob/master/moveit_planners/ompl/ompl_interface/src/planning_context_manager.cpp#L266) accordingly to add these planners. 
+
+## Citation
+If you use [MotionBenchMaker](https://github.com/KavrakiLab/motion_bench_maker) please consider citing our corresponding article
+```
+@article{chamzas2022-motion-bench-maker,
+  title = {MotionBenchMaker: A Tool to Generate and Benchmark Motion Planning Datasets},
+  volume = {7},
+  number = {2},
+  pages = {882–889},
+  issn = {2377-3766},
+  doi = {10.1109/LRA.2021.3133603},
+  journal = {IEEE Robotics and Automation Letters},
+  author = {Chamzas, Constantinos and Quintero-Pe{\~n}a, Carlos and Kingston, Zachary and Orthey, Andreas and Rakita, Daniel and Gleicher, Michael and Toussaint, Marc and E. Kavraki, Lydia},
+  year = {2022},
+  month = apr
+  }
+```
 
 
 ## Detailed description
