@@ -11,7 +11,7 @@
   <arg name="sensed" default="false" />
   <arg name="solve" default="false" />
   <arg name="rviz" default="visualize" />
-  <arg name="pcd" default="true" />
+  <arg name="pcd" default="false" />
 
   <!-- Start the create dataset node -->
   <node  name="visualize" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="visualize" output="screen" required = "true" > 
