@@ -20,7 +20,7 @@ namespace robowflex
     namespace parser
     {
         template <typename Type>
-        std::string toString(Type val, int width = 4, char fill = '0')
+        std::string toString(Type val, int width, char fill = '0')
         {
             std::stringstream ss;
             // Preappends 'fill' to val to make it of length at least width
