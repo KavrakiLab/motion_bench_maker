@@ -194,7 +194,7 @@ MotionRequestBuilderPtr Setup::createRequest() const
 
 bool Setup::loadGeometricScene(const int &index, const ScenePtr &scene, int width, char fill) const
 {
-    auto scene_file = dataset_ + "/scene" + parser::toString(width, fill, index) + ".yaml";
+    auto scene_file = dataset_ + "/scene" + parser::toString(index, width, fill) + ".yaml";
     if (!scene->fromYAMLFile(scene_file))
     {
         ROS_ERROR("Failed to read file: %s for scene", scene_file.c_str());
