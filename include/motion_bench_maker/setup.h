@@ -76,17 +76,23 @@ namespace robowflex
         // Load functions from yaml files
         bool loadSceneYaml(const ScenePtr &scene) const;
         bool loadSceneUrdf(const RobotPtr &robot) const;
-        bool loadGeometricScene(const int &index, const ScenePtr &scene) const;
-        bool loadSensedScene(const int &index, const ScenePtr &scene) const;
-        bool loadRequest(const int &index, const MotionRequestBuilderPtr &request) const;
+        bool loadGeometricScene(const int &index, const ScenePtr &scene, int width = 4,
+                                char fill = '0') const;
+        bool loadSensedScene(const int &index, const ScenePtr &scene, int width = 4, char fill = '0') const;
+        bool loadRequest(const int &index, const MotionRequestBuilderPtr &request, int width = 4,
+                         char fill = '0') const;
         bool loadTrajectory(const int &index, const robot_state::RobotState &ref_state,
-                            const TrajectoryPtr &traj) const;
+                            const TrajectoryPtr &traj, int width = 4, char fill = '0') const;
 
         // Store functions from yaml files
-        void saveGeometricScene(const int &index, const SceneConstPtr &scene) const;
-        void saveSensedScene(const int &index, const SceneConstPtr &scene) const;
-        void saveRequest(const int &index, const MotionRequestBuilderConstPtr &request) const;
-        void saveTrajectory(const int &index, const TrajectoryConstPtr &traj) const;
+        void saveGeometricScene(const int &index, const SceneConstPtr &scene, int width = 4,
+                                char fill = '0') const;
+        void saveSensedScene(const int &index, const SceneConstPtr &scene, int width = 4,
+                             char fill = '0') const;
+        void saveRequest(const int &index, const MotionRequestBuilderConstPtr &request, int width = 4,
+                         char fill = '0') const;
+        void saveTrajectory(const int &index, const TrajectoryConstPtr &traj, int width = 4,
+                            char fill = '0') const;
         void saveConfigToDataset() const;
 
     protected:
