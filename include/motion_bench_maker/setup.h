@@ -9,7 +9,9 @@
 #include <robowflex_library/tf.h>
 #include <robowflex_library/planning.h>
 #include <moveit/robot_state/robot_state.h>
-#include <pcl_ros/point_cloud.h>
+#include <pcl/point_cloud.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
 
 // Yaml
 #include <yaml-cpp/yaml.h>
