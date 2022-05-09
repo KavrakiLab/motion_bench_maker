@@ -6,7 +6,7 @@ ENV CATKIN_WS $(realpath $ROS_UNDERLAY/..)
 
 # Dependencies
 RUN apt-get update && \
-    apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev \
+    apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget \
     ros-${ROS_DISTRO}-moveit \
     ros-${ROS_DISTRO}-eigen-conversions \
     ros-${ROS_DISTRO}-tf-conversions \
