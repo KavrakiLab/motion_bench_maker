@@ -13,6 +13,19 @@ RUN apt-get update && \
     ros-${ROS_DISTRO}-pcl-conversions \
     ros-${ROS_DISTRO}-fcl
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        pkg-config \
+        libglvnd-dev libglvnd-dev:i386 \
+        libgl1-mesa-dev libgl1-mesa-dev:i386 \
+        libegl1-mesa-dev libegl1-mesa-dev:i386 \
+        libgles2-mesa-dev libgles2-mesa-dev:i386 && \
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES all
+
+COPY 10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+
 # Build dependencies
 WORKDIR $ROS_UNDERLAY/..
 COPY . ./src/motion_bench_maker
