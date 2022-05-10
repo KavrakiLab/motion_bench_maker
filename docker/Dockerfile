@@ -6,19 +6,23 @@ ENV CATKIN_WS $(realpath $ROS_UNDERLAY/..)
 
 # Dependencies
 RUN apt-get update && \
-    apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget \
     ros-${ROS_DISTRO}-moveit \
     ros-${ROS_DISTRO}-eigen-conversions \
     ros-${ROS_DISTRO}-tf-conversions \
     ros-${ROS_DISTRO}-pcl-conversions \
     ros-${ROS_DISTRO}-fcl
 
-# Build dependencies
-WORKDIR $ROS_UNDERLAY/..
-COPY . ./src/motion_bench_maker
+# Needed to generate pointclouds 
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES all
 
 # Build dependencies
-RUN git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
+WORKDIR $ROS_UNDERLAY/..
+
+# Clone MotionBenchMaker and dependencies
+RUN git clone --depth 1 --branch headless https://github.com/KavrakiLab/motion_bench_maker ./src/motion_bench_maker && \
+    git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
     rm -r ./src/robowflex/robowflex_dart ./src/robowflex/robowflex_tesseract ./src/robowflex/robowflex_visualization && \
     git clone --depth 1 https://github.com/KavrakiLab/robowflex_resources ./src/robowflex_resources && \
     git clone --depth 1 --branch fix-pcl-dep  https://github.com/KavrakiLab/gl_depth_sim ./src/gl_depth_sim && \
