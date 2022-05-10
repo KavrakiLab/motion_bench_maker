@@ -14,12 +14,10 @@ list(APPEND CATKIN_SOURCES
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_SOURCES})
 #Octomap is not a a catkin package, a.k.a. it has to be found like this
 find_package(octomap)
-# needed to convert octomaps
 
+# needed to convert octomaps
 SET(OpenGL_GL_PREFERENCE "GLVND")
 find_package(gl_depth_sim)
-
-find_package(Threads REQUIRED)
 
 catkin_package(
     LIBRARIES ${LIBRARY_NAME}

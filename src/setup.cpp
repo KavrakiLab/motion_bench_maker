@@ -50,7 +50,7 @@ Setup::Setup(const std::string &config, const std::string &dataset)
     loadMainParams(yaml.second);
 
     // Number of preapending zeros (minimum 4)
-    dwidth_ = int(log10(num_samples)) + 1;
+    dwidth_ = int(log10(getNumSamples())) + 1;
     dwidth_ = dwidth_ > 4 ? dwidth_ : 4;
 
     robot_->initializeFromYAML(mparams_->robot_description);
