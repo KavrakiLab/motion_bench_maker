@@ -95,6 +95,7 @@ namespace robowflex
     protected:
         RobotPtr robot_;
         MainParametersPtr mparams_;  //<<< main parameters used to load/visualize dataset.
+        int dwidth_;                 //<<< the width of the string needed to store data.
         GenParametersPtr gparams_;   //<<< generation parameters used to generate the dataset.
         std::string dataset_{""};
         std::string config_{""};

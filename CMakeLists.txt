@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
+cmake_policy(SET CMP0048 NEW)
 project(motion_bench_maker) 
 add_compile_options(-std=c++14)
 
@@ -65,7 +66,6 @@ add_dependencies(benchmark ${catkin_EXPORTED_TARGETS})
 add_executable(paper_example scripts/paper_example.cpp)
 target_link_libraries(paper_example ${LIBRARY_NAME})
 add_dependencies(paper_example ${catkin_EXPORTED_TARGETS})
-
 
 add_executable(generate scripts/generate.cpp)
 target_link_libraries(generate ${LIBRARY_NAME})

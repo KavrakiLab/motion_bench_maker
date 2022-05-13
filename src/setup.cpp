@@ -13,7 +13,6 @@
 #include <robowflex_library/robot.h>
 #include <robowflex_library/builder.h>
 #include <robowflex_library/trajectory.h>
-#include <robowflex_library/detail/fetch.h>
 
 // Robowflex ompl
 #include <robowflex_ompl/ompl_interface.h>
@@ -49,6 +48,8 @@ Setup::Setup(const std::string &config, const std::string &dataset)
     loadGenerateParams(yaml.second);
 
     loadMainParams(yaml.second);
+
+    dwidth_ = int(log10(getNumSamples())) > 3 ? int(log10(getNumSamples())) + 1 : 4;
 
     robot_->initializeFromYAML(mparams_->robot_description);
     robot_->loadKinematics(mparams_->planning_group);
@@ -194,7 +195,7 @@ MotionRequestBuilderPtr Setup::createRequest() const
 
 bool Setup::loadGeometricScene(const int &index, const ScenePtr &scene) const
 {
-    auto scene_file = dataset_ + "/scene" + parser::toString(index) + ".yaml";
+    auto scene_file = dataset_ + "/scene" + parser::toString(index, dwidth_) + ".yaml";
     if (!scene->fromYAMLFile(scene_file))
     {
         ROS_ERROR("Failed to read file: %s for scene", scene_file.c_str());
@@ -205,7 +206,7 @@ bool Setup::loadGeometricScene(const int &index, const ScenePtr &scene) const
 
 bool Setup::loadSensedScene(const int &index, const ScenePtr &scene) const
 {
-    auto scene_file = dataset_ + "/scene" + SENSED_POSTFIX_ + parser::toString(index) + ".yaml";
+    auto scene_file = dataset_ + "/scene" + SENSED_POSTFIX_ + parser::toString(index, dwidth_) + ".yaml";
     if (!scene->fromYAMLFile(scene_file))
     {
         ROS_ERROR("Failed to read file: %s for scene", scene_file.c_str());
@@ -217,7 +218,7 @@ bool Setup::loadSensedScene(const int &index, const ScenePtr &scene) const
 void Setup::loadPCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const
 {
     auto scene_file =
-        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index) + ".pcd");
+        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index, dwidth_) + ".pcd");
 
     int code = pcl::io::loadPCDFile(scene_file, *pcd);
     if (code)
@@ -227,7 +228,7 @@ void Setup::loadPCDScene(const int &index, const std::shared_ptr<pcl::PointCloud
 bool Setup::loadTrajectory(const int &index, const robot_state::RobotState &ref_state,
                            const TrajectoryPtr &traj) const
 {
-    auto traj_file = dataset_ + "/path" + parser::toString(index) + ".yaml";
+    auto traj_file = dataset_ + "/path" + parser::toString(index, dwidth_) + ".yaml";
     if (!traj->fromYAMLFile(ref_state, traj_file))
     {
         ROS_ERROR("Failed to read file: %s for trajectory", traj_file.c_str());
@@ -238,7 +239,7 @@ bool Setup::loadTrajectory(const int &index, const robot_state::RobotState &ref_
 
 bool Setup::loadRequest(const int &index, const MotionRequestBuilderPtr &request) const
 {
-    auto request_file = dataset_ + "/request" + parser::toString(index) + ".yaml";
+    auto request_file = dataset_ + "/request" + parser::toString(index, dwidth_) + ".yaml";
     if (!request->fromYAMLFile(request_file))
     {
         ROS_ERROR("Failed to read file: %s for request", request_file.c_str());
@@ -248,7 +249,7 @@ bool Setup::loadRequest(const int &index, const MotionRequestBuilderPtr &request
 }
 void Setup::saveGeometricScene(const int &index, const SceneConstPtr &scene) const
 {
-    auto scene_file = IO::resolvePackage(dataset_ + "/scene" + parser::toString(index) + ".yaml");
+    auto scene_file = IO::resolvePackage(dataset_ + "/scene" + parser::toString(index, dwidth_) + ".yaml");
     // if scene has octomap remove it here.
     for (const auto &obj : scene->getCollisionObjects())
         if (obj == "<octomap>")
@@ -260,8 +261,8 @@ void Setup::saveGeometricScene(const int &index, const SceneConstPtr &scene) con
 
 void Setup::saveSensedScene(const int &index, const SceneConstPtr &scene) const
 {
-    auto scene_file =
-        IO::resolvePackage(dataset_ + "/scene" + SENSED_POSTFIX_ + parser::toString(index) + ".yaml");
+    auto scene_file = IO::resolvePackage(dataset_ + "/scene" + SENSED_POSTFIX_ +
+                                         parser::toString(index, dwidth_) + ".yaml");
 
     for (const auto &obj : scene->getCollisionObjects())
         if (obj != "<octomap>")
@@ -274,7 +275,7 @@ void Setup::saveSensedScene(const int &index, const SceneConstPtr &scene) const
 void Setup::savePCDScene(const int &index, const std::shared_ptr<pcl::PointCloud<pcl::PointXYZ>> &pcd) const
 {
     auto scene_file =
-        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index) + ".pcd");
+        IO::resolvePackage(dataset_ + "/scene" + PCD_POSTFIX_ + parser::toString(index, dwidth_) + ".pcd");
 
     int code = pcl::io::savePCDFileBinaryCompressed(scene_file, *pcd);
     if (code)
@@ -283,7 +284,7 @@ void Setup::savePCDScene(const int &index, const std::shared_ptr<pcl::PointCloud
 
 void Setup::saveTrajectory(const int &index, const TrajectoryConstPtr &traj) const
 {
-    auto traj_file = IO::resolvePackage(dataset_ + "/path" + parser::toString(index) + ".yaml");
+    auto traj_file = IO::resolvePackage(dataset_ + "/path" + parser::toString(index, dwidth_) + ".yaml");
 
     if (!traj->toYAMLFile(traj_file))
         ROS_ERROR("Failed to save file: %s for trajectory", traj_file.c_str());
@@ -291,7 +292,8 @@ void Setup::saveTrajectory(const int &index, const TrajectoryConstPtr &traj) con
 
 void Setup::saveRequest(const int &index, const MotionRequestBuilderConstPtr &request) const
 {
-    auto request_file = IO::resolvePackage(dataset_ + "/request" + parser::toString(index) + ".yaml");
+    auto request_file =
+        IO::resolvePackage(dataset_ + "/request" + parser::toString(index, dwidth_) + ".yaml");
     if (!request->toYAMLFile(request_file))
         ROS_ERROR("Failed to save file: %s for request", request_file.c_str());
 }
