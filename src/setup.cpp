@@ -49,7 +49,9 @@ Setup::Setup(const std::string &config, const std::string &dataset)
 
     loadMainParams(yaml.second);
 
-    dwidth_ = int(log10(getNumSamples())) > 3 ? int(log10(getNumSamples())) + 1 : 4;
+    // Number of preapending zeros (minimum 4)
+    dwidth_ = int(log10(getNumSamples())) + 1;
+    dwidth_ = dwidth_ > 4 ? dwidth_ : 4;
 
     robot_->initializeFromYAML(mparams_->robot_description);
     robot_->loadKinematics(mparams_->planning_group);

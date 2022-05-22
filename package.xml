@@ -14,11 +14,7 @@
   <depend>robowflex_ompl</depend>
   <depend>robowflex_resources</depend>
 
-
-  <!-- TODO:REPLACE WITH roboflex -->
-  <depend>tf</depend>
-  <depend>tf_conversions</depend>
-  <depend>pcl_ros</depend>
+  <depend>pcl_conversions</depend>
 
   <!-- Other-->
   <depend>yaml-cpp</depend>

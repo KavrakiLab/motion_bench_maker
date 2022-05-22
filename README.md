@@ -5,13 +5,12 @@ This repository:
 2. Provides convenient tools to synthetically generate such datasets.
 This repository is actively maintained and updated by the authors to. For question/comments please feel free to open an issue, or contact the authors directly.
 
-
 ## Dependencies/Instalation
 To build this package you need to have in your ros workspace:
-1. The main [robowflex](https://github.com/KavrakiLab/robowflex/tree/master/robowflex_library) library .
+1. The main [robowflex](https://github.com/KavrakiLab/robowflex/tree/master/robowflex_library) library.
 2. The [robowflex_resources](https://github.com/KavrakiLab/robowflex_resources) package which holds robot config files.
-3. The [gl_depth_sim package](https://github.com/Jmeyer1292/gl_depth_sim) package to synthetically generate pointclouds.
-4. The [bio_ik](https://github.com/TAMS-Group/bio_ik) kinematics solver for multi-tip robots, e.g. shadowhand or baxter bi-manual manipulations
+3. The [gl_depth_sim package](https://github.com/KavrakiLab/gl_depth_sim)(Kavrakilab Fork) to generate pointclouds. The no-gl-depth sim branch can be built without this dependency but no sensed representions(pointclouds, octomaps) can be generated. 
+4. (Optionally) The [bio_ik](https://github.com/TAMS-Group/bio_ik) kinematics solver for multi-tip robots, e.g. shadowhand or baxter bi-manual manipulations
 
 ## Simple usage 
 You can generate a simple dataset, visualize it and run some basic benchmarking with the following 4 scripts.

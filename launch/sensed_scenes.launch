@@ -8,11 +8,12 @@
   <!-- Arguments for ROS parameters -->
   <arg name="dataset" default="package://motion_bench_maker/problems/bookshelf_small_panda" />
   <arg name="visualize" default="false" />
-  <arg name="octo" default="false" />
-  <arg name="pcd" default="true" />
+  <arg name="octo" default="true" />
+  <arg name="pcd" default="false" />
+  <arg name="required" default="false" />
 
   <!-- Start the sensed_scenes node -->
-  <node name="$(anon sensed_scenes)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="sensed_scenes" output="screen" required = "true" > 
+  <node name="$(anon sensed_scenes)" launch-prefix="$(arg launch_prefix)" pkg="motion_bench_maker" type="sensed_scenes" output="screen" required="$(arg required)"> 
     
     <param name="dataset" value="$(arg dataset)" />
     <param name="visualize" value="$(arg visualize)" />

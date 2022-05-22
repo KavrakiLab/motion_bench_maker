@@ -8,15 +8,16 @@ set(LIBRARY_NAME ${PROJECT_NAME})
 list(APPEND CATKIN_SOURCES
   robowflex_library
   robowflex_ompl
-  gl_depth_sim
-  pcl_ros # Used for interfaces extension
-  tf # Used for ROS example
-  tf_conversions # Used for ROS example
+  pcl_conversions # to convert to pcl versions 
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_SOURCES})
 #Octomap is not a a catkin package, a.k.a. it has to be found like this
-find_package(octomap REQUIRED)
+find_package(octomap)
+
+# needed to convert octomaps
+SET(OpenGL_GL_PREFERENCE "GLVND")
+find_package(gl_depth_sim)
 
 catkin_package(
     LIBRARIES ${LIBRARY_NAME}
@@ -39,12 +40,16 @@ list(APPEND INCLUDES
   ${Boost_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
   ${OCTOMAP_INCLUDE_DIRS}
+  ${gl_depth_sim_INCLUDE_DIRS}
   )
 
 list(APPEND LIBRARIES
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   ${OCTOMAP_LIBRARIES}
+  gl_depth_sim::gl_depth_sim
+  gl_depth_sim::glad
+  gl_depth_sim::gl_depth_sim_interfaces
   yaml-cpp
   )
 

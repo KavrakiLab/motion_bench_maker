@@ -14,7 +14,9 @@
 #include "gl_depth_sim/sim_depth_camera.h"
 #include "gl_depth_sim/mesh_loader.h"
 
-#include <pcl_ros/point_cloud.h>
+#include <pcl/point_cloud.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
 
 #if ROBOWFLEX_AT_LEAST_NOETIC
 
