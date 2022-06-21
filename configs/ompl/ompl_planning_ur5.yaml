@@ -46,12 +46,6 @@ planner_configs:
     type: geometric::BITstar
   AITstarkConfigDefault:
     type: geometric::AITstar
-  ThunderConfig:
-    type: geometric::RRTConnect
-    experience: "thunder"    
-  LightningConfig:
-    type: geometric::RRTConnect
-    experience: "lightning"    
   TRRTkConfigDefault:
     type: geometric::TRRT
     range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
