@@ -17,16 +17,20 @@ RUN apt-get update && \
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
-# Build dependencies
+# Create catkin workspace 
 WORKDIR $ROS_UNDERLAY/..
+RUN catkin config --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=Release 
+
+# Main MotionBenchMakerLibrary 
+RUN mkdir -p ./src/motion_bench_maker 
+ADD CMakeLists.txt ./src/
 
 # Clone MotionBenchMaker and dependencies
-RUN git clone --depth 1 https://github.com/KavrakiLab/motion_bench_maker ./src/motion_bench_maker && \
-    git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
-    rm -r ./src/robowflex/robowflex_dart ./src/robowflex/robowflex_tesseract ./src/robowflex/robowflex_visualization && \
-    git clone --depth 1 https://github.com/KavrakiLab/robowflex_resources ./src/robowflex_resources && \
-    git clone --depth 1 https://github.com/KavrakiLab/gl_depth_sim ./src/gl_depth_sim && \
-    rm -r ./src/gl_depth_sim/roscpp_gl_depth_sim_demos && \ 
-    catkin config --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=Release && \
-    catkin build --limit-status-rate 0.001 --no-notify && \
-    sed -i "s#/opt/ros/\$ROS_DISTRO/setup.bash#$ROS_UNDERLAY/setup.bash#g" /ros_entrypoint.sh
+#RUN git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
+#    rm -r ./src/robowflex/robowflex_dart ./src/robowflex/robowflex_tesseract ./src/robowflex/robowflex_visualization && \
+#    git clone --depth 1 https://github.com/KavrakiLab/robowflex_resources ./src/robowflex_resources && \
+#    git clone --depth 1 https://github.com/KavrakiLab/gl_depth_sim ./src/gl_depth_sim && \
+#    git clone --depth 1 https://github.com/TAMS-Group/bio_ik ./src/bio_ik && \
+#    rm -r ./src/gl_depth_sim/roscpp_gl_depth_sim_demos && \ 
+#    catkin build --limit-status-rate 0.001 --no-notify && \
+#    sed -i "s#/opt/ros/\$ROS_DISTRO/setup.bash#$ROS_UNDERLAY/setup.bash#g" /ros_entrypoint.sh
