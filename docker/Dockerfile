@@ -21,11 +21,11 @@ ENV NVIDIA_DRIVER_CAPABILITIES all
 WORKDIR $ROS_UNDERLAY/..
 
 # Clone MotionBenchMaker and dependencies
-RUN git clone --depth 1 --branch headless https://github.com/KavrakiLab/motion_bench_maker ./src/motion_bench_maker && \
+RUN git clone --depth 1 https://github.com/KavrakiLab/motion_bench_maker ./src/motion_bench_maker && \
     git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
     rm -r ./src/robowflex/robowflex_dart ./src/robowflex/robowflex_tesseract ./src/robowflex/robowflex_visualization && \
     git clone --depth 1 https://github.com/KavrakiLab/robowflex_resources ./src/robowflex_resources && \
-    git clone --depth 1 --branch fix-pcl-dep  https://github.com/KavrakiLab/gl_depth_sim ./src/gl_depth_sim && \
+    git clone --depth 1 https://github.com/KavrakiLab/gl_depth_sim ./src/gl_depth_sim && \
     rm -r ./src/gl_depth_sim/roscpp_gl_depth_sim_demos && \ 
     catkin config --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     catkin build --limit-status-rate 0.001 --no-notify && \
