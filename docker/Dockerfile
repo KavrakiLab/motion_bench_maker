@@ -25,9 +25,6 @@ RUN catkin config --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=
 RUN mkdir -p ./src/motion_bench_maker 
 ADD ./ ./src/motion_bench_maker/
 
-RUN ls ./src/motion_bench_maker 
-RUN ls ./src/ 
-
 # Clone MotionBenchMaker and dependencies
 RUN git clone --depth 1 https://github.com/KavrakiLab/robowflex.git ./src/robowflex && \
     rm -r ./src/robowflex/robowflex_dart ./src/robowflex/robowflex_tesseract ./src/robowflex/robowflex_visualization && \

@@ -17,6 +17,8 @@ planner_configs:
     type: geometric::RRTstar
   TRRTkConfigDefault:
     type: geometric::TRRT
+  BiESTkConfigDefault:
+    type: geometric::BiEST
   PRMkConfigDefault:
     type: geometric::PRM
   PRMstarkConfigDefault:
@@ -36,6 +38,7 @@ arm_with_torso:
     - RRTConnectkConfigDefault
     - RRTstarkConfigDefault
     - TRRTkConfigDefault
+    - BiESTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BITstarkConfigDefault
