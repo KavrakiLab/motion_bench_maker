@@ -62,6 +62,11 @@ namespace robowflex
         // @brief loads a scene to the
 
         void loadScene(const SceneConstPtr &scene);
+        // Creates a pointcloud with points at max range. This can help create an octomap
+        // with correct free cells.
+
+        void setClipAtMaxRange(bool clip_at_max_range);
+        void clear();
 
         // pose The position of the camera in ROS standard coordinates (+Z down camera LoS)
         CloudXYZPtr generateCloud(const RobotPose &cam_pose);
@@ -79,13 +84,12 @@ namespace robowflex
         void parseCameraProporties(const std::string &config);
         gds::CameraProperties props_;
         Sensors sensors_;
+        bool clip_at_max_range_;
 
         ScenePtr cloudToOctomap(const RobotPose &cam_pose, pcl::PointCloud<pcl::PointXYZ>);
         std::shared_ptr<gds::SimDepthCamera> sim_;
         occupancy_map_monitor::OccMapTreePtr tree_;
         CloudXYZPtr fullCloud_;
-
-        octomap::KeyRay key_ray_;
     };
 }  // namespace robowflex
 

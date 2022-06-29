@@ -36,6 +36,9 @@ OctomapGenerator::OctomapGenerator(const std::string &config)
     tree_ = std::make_shared<occupancy_map_monitor::OccMapTree>(sensors_.resolution);
     sim_ = std::make_shared<gds::SimDepthCamera>(props_);
     fullCloud_ = std::make_shared<CloudXYZ>();
+
+    // The default clip_at_max_range behaviour is false.
+    clip_at_max_range_ = false;
 };
 
 RobotPose OctomapGenerator::lookat(const Eigen::Vector3d &eye, const Eigen::Vector3d &origin)
@@ -84,14 +87,32 @@ void OctomapGenerator::loadScene(const SceneConstPtr &scene)
     {
         const auto &obj = scene->getObjectGeometry(name);
         const auto &mesh = geomToMesh(obj, name);
+        // TODO: does this need to be cleared everytime?
         sim_->add(name, mesh, toMatrix<Eigen::Isometry3d>(scene->getObjectPose(name)));
     }
+}
+
+void OctomapGenerator::setClipAtMaxRange(bool clip_at_max_range)
+{
+    clip_at_max_range_ = clip_at_max_range;
+}
+
+void OctomapGenerator::clear()
+{
+    tree_->clear();
+    fullCloud_->clear();
 }
 
 CloudXYZPtr OctomapGenerator::generateCloud(const RobotPose &cam_pose)
 {
     CloudXYZ cloud;
-    const auto &depth_img = sim_->render(toMatrix<Eigen::Isometry3d>(cam_pose));
+    auto depth_img = sim_->render(toMatrix<Eigen::Isometry3d>(cam_pose));
+
+    // Use z_far for areas with no objects
+    if (clip_at_max_range_)
+        for (auto &d : depth_img.data)
+            d = d == 0 ? props_.z_far : d;
+
     gds::toPointCloudXYZ(props_, depth_img, cloud);
 
     auto tr = cam_pose.translation();
@@ -109,8 +130,7 @@ CloudXYZPtr OctomapGenerator::generateCloud(const RobotPose &cam_pose)
 bool OctomapGenerator::geomToSensed(const ScenePtr &geometric, const ScenePtr &sensed,
                                     const IO::RVIZHelperPtr &rviz)
 {
-    tree_->clear();
-    fullCloud_->clear();
+    clear();
     auto start = ros::WallTime::now();
 
     loadScene(geometric);
@@ -155,7 +175,8 @@ bool OctomapGenerator::updateOctoMap(const CloudXYZPtr &cloud, const RobotPose &
 
     // sensor origin is the cloud origin
     octomap::point3d sensor_origin(cso.x(), cso.y(), cso.z());
-    octomap::KeySet free_cells, occupied_cells;
+    octomap::KeySet free_cells, occupied_cells, clipped_cells;
+    octomap::KeyRay key_ray_;
 
     tree_->lockRead();
 
@@ -169,23 +190,28 @@ bool OctomapGenerator::updateOctoMap(const CloudXYZPtr &cloud, const RobotPose &
             if (!std::isnan(p.x) && !std::isnan(p.y) && !std::isnan(p.z))
             {
                 // transform to camera frame
-                auto point = cam_pose * Eigen::Vector3d{p.x, p.y, p.z};
-                occupied_cells.insert(tree_->coordToKey(point.x(), point.y(), point.z()));
-                fullCloud_->push_back(pcl::PointXYZ(point.x(), point.y(), point.z()));
+                auto vec = Eigen::Vector3d{p.x, p.y, p.z};
+                auto point = cam_pose * vec;
+                // 0.999 is to account for numerical errors
+                if (vec.norm() < props_.z_far * (0.999))
+                {
+                    occupied_cells.insert(tree_->coordToKey(point.x(), point.y(), point.z()));
+                    fullCloud_->push_back(pcl::PointXYZ(point.x(), point.y(), point.z()));
+                }
+                else
+                    clipped_cells.insert(tree_->coordToKey(point.x(), point.y(), point.z()));
             }
         }
 
-        // TODO: Maybe I should remove this completelely
         /* compute the free cells along each ray that ends at an occupied cell */
         for (auto it = occupied_cells.begin(), end = occupied_cells.end(); it != end; ++it)
             if (tree_->computeRayKeys(sensor_origin, tree_->keyToCoord(*it), key_ray_))
                 free_cells.insert(key_ray_.begin(), key_ray_.end());
 
         /* compute the free cells along each ray that ends at a clipped cell */
-        // for (octomap::KeySet::iterator it = clip_cells.begin(), end = clip_cells.end(); it != end;
-        // ++it)
-        //    if (tree_->computeRayKeys(sensor_origin, tree_->keyToCoord(*it), key_ray_))
-        //        free_cells.insert(key_ray_.begin(), key_ray_.end());
+        for (auto it = clipped_cells.begin(), end = clipped_cells.end(); it != end; ++it)
+            if (tree_->computeRayKeys(sensor_origin, tree_->keyToCoord(*it), key_ray_))
+                free_cells.insert(key_ray_.begin(), key_ray_.end());
     }
 
     catch (...)
