@@ -72,6 +72,7 @@ namespace robowflex
                           const IO::RVIZHelperPtr &rviz = nullptr);
 
         CloudXYZPtr getLastPointCloud();
+        occupancy_map_monitor::OccMapTreePtr getLastOctomapTree();
 
     private:
         gds::Mesh geomToMesh(const GeometryPtr &geom, const std::string &name);

@@ -95,10 +95,13 @@ CloudXYZPtr OctomapGenerator::generateCloud(const RobotPose &cam_pose)
     gds::toPointCloudXYZ(props_, depth_img, cloud);
 
     auto tr = cam_pose.translation();
+    auto qr = cam_pose.rotation();
     // cloud.sensor_origin_ = tr;
     cloud.sensor_origin_.x() = tr.x();
     cloud.sensor_origin_.y() = tr.y();
     cloud.sensor_origin_.z() = tr.z();
+
+    cloud.sensor_orientation_ = qr.cast<float>();
 
     return std::make_shared<CloudXYZ>(cloud);
 }
@@ -222,4 +225,9 @@ bool OctomapGenerator::updateOctoMap(const CloudXYZPtr &cloud, const RobotPose &
 CloudXYZPtr OctomapGenerator::getLastPointCloud()
 {
     return fullCloud_;
+}
+
+occupancy_map_monitor::OccMapTreePtr OctomapGenerator::getLastOctomapTree()
+{
+    return tree_;
 }
