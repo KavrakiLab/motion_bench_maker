@@ -78,6 +78,7 @@ namespace robowflex
 
         CloudXYZPtr getLastPointCloud();
         occupancy_map_monitor::OccMapTreePtr getLastOctomapTree();
+        const occupancy_map_monitor::OccMapTreeConstPtr getLastOctomapTreeConst();
 
     private:
         gds::Mesh geomToMesh(const GeometryPtr &geom, const std::string &name);

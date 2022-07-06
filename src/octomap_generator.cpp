@@ -257,3 +257,8 @@ occupancy_map_monitor::OccMapTreePtr OctomapGenerator::getLastOctomapTree()
 {
     return tree_;
 }
+
+const occupancy_map_monitor::OccMapTreeConstPtr OctomapGenerator::getLastOctomapTreeConst()
+{
+    return collision_detection::OccMapTreeConstPtr(tree_);
+}
