@@ -253,6 +253,11 @@ CloudXYZPtr OctomapGenerator::getLastPointCloud()
     return fullCloud_;
 }
 
+const gds::CameraProperties OctomapGenerator::getCameraProperties()
+{
+    return props_;
+}
+
 occupancy_map_monitor::OccMapTreePtr OctomapGenerator::getLastOctomapTree()
 {
     return tree_;

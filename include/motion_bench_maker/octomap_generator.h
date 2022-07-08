@@ -77,6 +77,7 @@ namespace robowflex
                           const IO::RVIZHelperPtr &rviz = nullptr);
 
         CloudXYZPtr getLastPointCloud();
+        const gds::CameraProperties getCameraProperties();
         occupancy_map_monitor::OccMapTreePtr getLastOctomapTree();
         const occupancy_map_monitor::OccMapTreeConstPtr getLastOctomapTreeConst();
 
