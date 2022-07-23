@@ -55,6 +55,10 @@ planner_configs:
   BiESTkConfigDefault:
     type: geometric::BiEST
     range: 0.0   # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
+  BITstarkConfigDefault:
+    type: geometric::BITstar
+  AITstarkConfigDefault:
+    type: geometric::AITstar
 left_arm:
   planner_configs:
     - SBLkConfigDefault
@@ -69,6 +73,8 @@ left_arm:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(left_s0,left_s1)
   longest_valid_segment_fraction: 0.005
 right_arm:
@@ -85,6 +91,8 @@ right_arm:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(right_s0,right_s1)
   longest_valid_segment_fraction: 0.005
 right_3dof:
@@ -101,6 +109,8 @@ right_3dof:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(right_w0,right_w1)
   longest_valid_segment_fraction: 0.005
 right_4dof:
@@ -117,6 +127,8 @@ right_4dof:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(right_e1,right_w0)
   longest_valid_segment_fraction: 0.005
 right_5dof:
@@ -133,6 +145,8 @@ right_5dof:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(right_e0,right_e1)
   longest_valid_segment_fraction: 0.005
 both_arms:
@@ -149,6 +163,8 @@ both_arms:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(left_s0,left_s1)
   longest_valid_segment_fraction: 0.005
 left_hand:
@@ -165,6 +181,8 @@ left_hand:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
 right_hand:
   planner_configs:
     - SBLkConfigDefault
@@ -179,3 +197,5 @@ right_hand:
     - PRMkConfigDefault
     - PRMstarkConfigDefault
     - BiESTkConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault

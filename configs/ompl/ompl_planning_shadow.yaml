@@ -120,8 +120,10 @@ planner_configs:
     sparse_delta_fraction: 0.25  # delta fraction for connection distance. This value represents the visibility range of sparse samples. default: 0.25
     dense_delta_fraction: 0.001  # delta fraction for interface detection. default: 0.001
     max_failures: 5000  # maximum consecutive failure limit. default: 5000
-  projection_evaluator: joints(FFJ1)
-  longest_valid_segment_fraction: 0.005
+  BITstarkConfigDefault:
+    type: geometric::BITstar
+  AITstarkConfigDefault:
+    type: geometric::AITstar
 all_fingers:
   planner_configs:
     - SBLkConfigDefault
@@ -147,6 +149,8 @@ all_fingers:
     - LazyPRMstarkConfigDefault
     - SPARSkConfigDefault
     - SPARStwokConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(FFJ1)
   longest_valid_segment_fraction: 0.005
 ff_finger:
@@ -174,7 +178,7 @@ ff_finger:
     - LazyPRMstarkConfigDefault
     - SPARSkConfigDefault
     - SPARStwokConfigDefault
+    - BITstarkConfigDefault
+    - AITstarkConfigDefault
   projection_evaluator: joints(FFJ1)
   longest_valid_segment_fraction: 0.005
-
-
