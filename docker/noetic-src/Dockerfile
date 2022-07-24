@@ -30,7 +30,9 @@ WORKDIR /ws
 RUN wstool init src && \
     wstool merge -t src https://raw.githubusercontent.com/ros-planning/moveit/noetic-devel/moveit.rosinstall && \
     wstool update -t src && \
-    rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO}
+    rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} && \
+    rm -r ./src/moveit_core && \  
+    git clone -b noetic-devel-add-bitstar-aitstar --depth 1 https://github.com/KavrakiLab/moveit_core ./src/moveit_core 
 
 RUN catkin build --limit-status-rate 0.001 --no-notify
 
