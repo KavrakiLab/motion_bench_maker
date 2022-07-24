@@ -7,6 +7,7 @@ ENV CATKIN_WS $(realpath $ROS_UNDERLAY/..)
 # Dependencies
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget \
+    libboost-all-dev libeigen3-dev libtinyxml2-dev libyaml-cpp-dev libhdf5-dev \
     ros-${ROS_DISTRO}-eigen-conversions \
     ros-${ROS_DISTRO}-tf-conversions \
     ros-${ROS_DISTRO}-pcl-conversions \
@@ -31,8 +32,8 @@ RUN wstool init src && \
     wstool merge -t src https://raw.githubusercontent.com/ros-planning/moveit/noetic-devel/moveit.rosinstall && \
     wstool update -t src && \
     rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} && \
-    rm -r ./src/moveit_core && \  
-    git clone -b noetic-devel-add-bitstar-aitstar --depth 1 https://github.com/KavrakiLab/moveit_core ./src/moveit_core 
+    rm -r ./src/moveit/ && \  
+    git clone -b noetic-devel-add-bitstar-aitstar --depth 1 https://github.com/ChamzasKonstantinos/moveit ./src/moveit 
 
 RUN catkin build --limit-status-rate 0.001 --no-notify
 
