@@ -12,8 +12,12 @@ list(APPEND CATKIN_SOURCES
 )
 
 find_package(catkin REQUIRED COMPONENTS ${CATKIN_SOURCES})
+
 #Octomap is not a a catkin package, a.k.a. it has to be found like this
 find_package(octomap)
+
+#We need boost to build succesfully
+find_package(Boost REQUIRED filesystem serialization)
 
 # needed to convert octomaps
 SET(OpenGL_GL_PREFERENCE "GLVND")
@@ -51,6 +55,7 @@ list(APPEND LIBRARIES
   gl_depth_sim::glad
   gl_depth_sim::gl_depth_sim_interfaces
   yaml-cpp
+  Boost::serialization 
   )
 
 

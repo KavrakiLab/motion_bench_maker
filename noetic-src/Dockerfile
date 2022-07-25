@@ -6,8 +6,7 @@ ENV CATKIN_WS $(realpath $ROS_UNDERLAY/..)
 
 # Dependencies
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget \
-    libboost-all-dev libeigen3-dev libtinyxml2-dev libyaml-cpp-dev libhdf5-dev \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git python3-catkin-tools libhdf5-dev libpcl-dev zip wget libboost-all-dev libboost-serialization-dev libeigen3-dev libtinyxml2-dev libyaml-cpp-dev libhdf5-dev \
     ros-${ROS_DISTRO}-eigen-conversions \
     ros-${ROS_DISTRO}-tf-conversions \
     ros-${ROS_DISTRO}-pcl-conversions \
