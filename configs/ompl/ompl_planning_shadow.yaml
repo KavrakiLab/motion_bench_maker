@@ -153,7 +153,7 @@ all_fingers:
     - AITstarkConfigDefault
   projection_evaluator: joints(FFJ1)
   longest_valid_segment_fraction: 0.005
-ff_finger:
+finger_ff:
   planner_configs:
     - SBLkConfigDefault
     - ESTkConfigDefault
