@@ -7,3 +7,4 @@ rm -rf table*
 rm -rf cage*
 rm -rf kitchen* 
 rm -rf box* 
+rm -rf pregrasp* 
