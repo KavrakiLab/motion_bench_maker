@@ -9,7 +9,6 @@
   <arg name="dataset" default="package://motion_bench_maker/problems/shelf_fetch/" />
   <arg name="results" default="package://motion_bench_maker/results/shelf_fetch/" />
   <arg name="exp_name" default="results" />
-  <arg name="train" default="False" />
   <arg name="time" default="30" />
 
   <arg name="start" default="1" />
@@ -31,7 +30,6 @@
     <param name="end" value="$(arg end)" />
     <param name="runs" value="$(arg runs)" />
     <param name="time" value="$(arg time)" />
-    <param name="train" value="$(arg train)" />
     <rosparam param="planners" subst_value="True">[$(arg planners)]</rosparam>
     
   </node>

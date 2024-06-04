@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     std::string dataset, results, exp_name;
     std::vector<std::string> planners;
     double time, runs;
-    bool sensed, train;
+    bool sensed;
 
     int start, end;
 
@@ -46,7 +46,6 @@ int main(int argc, char **argv)
     error += !parser::get(exec_name, node, "end", end);
     error += !parser::get(exec_name, node, "runs", runs);
     error += !parser::get(exec_name, node, "sensed", sensed);
-    error += !parser::get(exec_name, node, "train", train);
 
     parser::shutdownIfError(exec_name, error);
 
